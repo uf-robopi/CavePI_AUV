@@ -1,4 +1,4 @@
-# ROS2 Package for Perception and Control of CavePI AUV
+# ROS2 Package for Perception of CavePI AUV
 
 ## Compatible Platform
 
