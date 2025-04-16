@@ -1,6 +1,10 @@
 # Official GitHub Repository for CavePI AUV
 
-This repository contains the design files, operational codes, and digital twin version of CavePI AUV.
+This repository contains the design files, operational codes, and digital twin version of CavePI AUV. Please refer to the following folders for more details.
+
+- CAD_designs: Contains the SolidWork design files for all the parts used to build CavePI.
+- AUV_nano: Contains the codes for CavePI's onboard Jetson nano 2GB device.
+- AUV_rpi: Contains the codes for CavePI's onboard Raspberry Pi 5 device.
 
 ## Resources
 
