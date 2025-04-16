@@ -1,3 +1,8 @@
+# =======================================================
+# Author : Alakrit Gupta, Adnan Abdullah
+# Email: gupta.alankrit@ufl.edu, adnanabdullah@ufl.edu
+# =======================================================
+
 # Camera index
 FRONT_CAMERA_INDEX: 0
 DOWN_CAMERA_INDEX: 4

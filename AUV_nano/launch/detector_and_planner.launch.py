@@ -1,3 +1,8 @@
+# =======================================================
+# Author : Alakrit Gupta, Adnan Abdullah
+# Email: gupta.alankrit@ufl.edu, adnanabdullah@ufl.edu
+# =======================================================
+
 from launch import LaunchDescription
 from launch_ros.actions import Node
 

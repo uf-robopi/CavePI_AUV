@@ -20,6 +20,12 @@ from .perception_util import PrepareEngine, InferenceOnFrame
 from .comm_util import initialize_camera, reinitialize_camera
 
 class Detector(Node):
+    """
+    This ROS2 node detects QR codes from front camera and cavelines from down camera.
+    The detected lines are published as a Float32MultiArray message.
+    The processed segmentation map image is published as an Image message.
+    The QR code information is published as an Int32 message.
+    """
     def __init__(self):
         super().__init__('detector')
 
@@ -31,11 +37,12 @@ class Detector(Node):
         with open(config_file, 'r') as f:
             config = yaml.safe_load(f)
 
-        # Create publishers for data topics
+        # Create publishers
         self.qr_pub = self.create_publisher(Int32, 'qr_info', 10)
         self.map_pub = self.create_publisher(Image, 'map', 10)
         self.lines_pub = self.create_publisher(Float32MultiArray, 'detected_lines', 10)
 
+        # CVBridge for converting OpenCV images to ROS Image messages
         self.bridge = CvBridge()
 
 
@@ -59,6 +66,8 @@ class Detector(Node):
         # Camera indices as defined in config file
         self.FRONT_CAMERA_INDEX = config['FRONT_CAMERA_INDEX']
         self.DOWN_CAMERA_INDEX = config['DOWN_CAMERA_INDEX']
+
+        # Initialize the cameras
         self.front_camera = initialize_camera(self.FRONT_CAMERA_INDEX, "front_camera")
         self.downward_camera = initialize_camera(self.DOWN_CAMERA_INDEX, "downward_camera")
 
@@ -70,18 +79,28 @@ class Detector(Node):
         self.timer = self.create_timer(1.0 / 10.0, self.timer_callback)
 
     def timer_callback(self):
+        """
+        Callback  function to keep the node alive.
+        """
         try:
             # --- Process front camera for QR detection ---
+
+            # Reinitialize the front camera if not already initialized
             if not self.front_camera.isOpened():
                 self.get_logger().error("Front camera is not opened; reinitializing...")
                 self.front_camera = reinitialize_camera(self.FRONT_CAMERA_INDEX, "front_camera")
             
+            # Read frame from front camera
             ret_front, frame_front = self.front_camera.read()
+
+            # Check if the frame was read successfully
             if not ret_front or frame_front is None:
                 self.get_logger().warn("Failed to read frame from front camera.")
-                qr_value = -1
+                qr_value = -1 # Default value if QR detection fails
+            
             else:
                 try:
+                    # Detect and decode QR code
                     data, points, _ = self.qr_detector.detectAndDecode(frame_front)
                     if data:
                         try:
@@ -95,6 +114,7 @@ class Detector(Node):
                     self.get_logger().error("OpenCV QR detection failed: {}".format(e))
                     qr_value = -1
 
+                # Reinitialize the front camera if not already initialized
                 if not self.front_camera.isOpened():
                     self.get_logger().error("Front camera lost connection; reinitializing...")
                     self.front_camera = reinitialize_camera(self.FRONT_CAMERA_INDEX, "front_camera")
@@ -108,11 +128,16 @@ class Detector(Node):
             self.qr_pub.publish(qr_msg)
 
             # --- Process downward camera for line detection ---
+
+            # Reinitialize the downward camera if not already initialized
             if not self.downward_camera.isOpened():
                 self.get_logger().error("Downward camera is not opened; reinitializing...")
                 self.downward_camera = reinitialize_camera(self.DOWN_CAMERA_INDEX, "downward_camera")
             
+            # Read frame from downward camera
             ret_down, frame_down = self.downward_camera.read()
+
+            # Check if the frame was read successfully
             if not ret_down or frame_down is None:
                 self.get_logger().warn("Failed to read frame from downward camera.")
             else:
@@ -120,6 +145,7 @@ class Detector(Node):
                 screen_center_x = frame_width // 2
                 screen_center_y = frame_height // 2
 
+                # Detect cavelines on the downward camera frame
                 self.get_logger().info("Inferencing on downward frame...")
                 lines, line_overlayed_map = InferenceOnFrame(
                     self.bindings, self.host_inputs, self.cuda_inputs, 
@@ -130,7 +156,7 @@ class Detector(Node):
                 map_msg = self.bridge.cv2_to_imgmsg(line_overlayed_map, encoding='bgr8')
                 self.map_pub.publish(map_msg)
 
-                # Publish detected lines
+                # Publish detected line coordinates
                 flat_lines = [float(coord) for line in lines for coord in line]  # flatten the list of lines
                 lines_msg = Float32MultiArray()
                 lines_msg.data = flat_lines
@@ -157,13 +183,21 @@ class Detector(Node):
         super().destroy_node()
 
 def main(args=None):
+    """
+    Main function to run the Detector node.
+    """
+    # Initialize the ROS2 node
     rclpy.init(args=args)
     detector = Detector()
+
     try:
+        # Spin the node to keep it alive and processing
         rclpy.spin(detector)
     except KeyboardInterrupt:
+        # Handle keyboard interrupt gracefully
         detector.get_logger().info("Keyboard interrupt received, shutting down.")
     finally:
+        # Clean up and shutdown
         detector.destroy_node()
         rclpy.shutdown()
 

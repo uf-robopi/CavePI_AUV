@@ -17,7 +17,7 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='cavepi',
+    maintainer='Adnan Abdullah',
     maintainer_email='adnanabdullah@ufl.edu',
     description='ROS2 Package for Perception and Control of CavePI AUV',
     license='Apache-2.0',

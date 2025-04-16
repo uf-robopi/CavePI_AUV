@@ -3,19 +3,17 @@
 # Email: gupta.alankrit@ufl.edu, adnanabdullah@ufl.edu
 # =======================================================
 
+""" This script contains helper functions for handling camera initialization and sending UDP data to RPi."""
+
 import cv2
 import time
 import socket
 import json
-import numpy as np
 import yaml
 import os
 from ament_index_python.packages import get_package_share_directory
 
 
-#######################################
-# Configuration
-#######################################
 
 # Load configuration
 package_share = get_package_share_directory('detector')
@@ -23,7 +21,7 @@ config_file = os.path.join(package_share, 'config', 'config.yaml')
 with open(config_file, 'r') as f:
     config = yaml.safe_load(f)
 
-
+# USB camera indices
 FRONT_CAMERA_INDEX = config['FRONT_CAMERA_INDEX']
 DOWN_CAMERA_INDEX = config['DOWN_CAMERA_INDEX']
 
@@ -55,16 +53,23 @@ UDP_PORT = config['UDP_PORT']
 #######################################
 def initialize_camera(index, camera_name):
     """
-    Attempt to open a camera multiple times. Returns an open cv2.VideoCapture
-    if successful, otherwise a closed one (camera.isOpened()=False).
+    Attempt to open a camera multiple times. 
+    Args:
+        index (int): Camera index.
+        camera_name (str): Name of the camera (for logging).
+    Returns:
+        A cv2.VideoCapture object if successful, otherwise None.
     """
     print(f"[INFO] Initializing {camera_name} on index {index} ...")
+
+    # Initialize camera
     camera = cv2.VideoCapture(index, cv2.CAP_V4L2)
     camera.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
     camera.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT)
     camera.set(cv2.CAP_PROP_FPS, FRAME_FPS)
 
     attempt = 0
+    # Retry opening the camera if it fails
     while not camera.isOpened() and attempt < MAX_ATTEMPTS:
         print(f"[WARN] Cannot open {camera_name} at index {index}. Retrying {attempt+1}/{MAX_ATTEMPTS}...")
         time.sleep(1)
@@ -74,6 +79,7 @@ def initialize_camera(index, camera_name):
         camera.set(cv2.CAP_PROP_FPS, FRAME_FPS)
         attempt += 1
 
+    # Check if the camera opened successfully
     if not camera.isOpened():
         print(f"[ERROR] Failed to open {camera_name} after {MAX_ATTEMPTS} attempts.")
     else:
@@ -86,12 +92,15 @@ def reinitialize_camera(index, camera_name):
     Re-initialize camera if it fails mid-operation.
     """
     print(f"[INFO] Reinitializing {camera_name} ...")
+
+    # Attempt to reinitialize the camera
     camera = cv2.VideoCapture(index, cv2.CAP_V4L2)
     camera.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
     camera.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT)
     camera.set(cv2.CAP_PROP_FPS, FRAME_FPS)
 
     attempt = 0
+    # Retry opening the camera if it fails
     while not camera.isOpened() and attempt < REINIT_ATTEMPTS:
         print(f"[WARN] Failed to reconnect {camera_name}. Retrying {attempt+1}/{REINIT_ATTEMPTS}...")
         time.sleep(1)
@@ -101,6 +110,7 @@ def reinitialize_camera(index, camera_name):
         camera.set(cv2.CAP_PROP_FPS, FRAME_FPS)
         attempt += 1
 
+    # Check if the camera opened successfully
     if not camera.isOpened():
         print(f"[ERROR] Failed to reconnect {camera_name} after {REINIT_ATTEMPTS} attempts.")
 
@@ -115,8 +125,10 @@ def send_udp_data(sock, data_type, data, ip, port):
             'type': data_type,
             'data': data
         }
+        # Serialize the message to JSON and encode it to bytes
         serialized_message = json.dumps(message).encode('utf-8')
         sock.sendto(serialized_message, (ip, port))
+        
         # Debug printing (optional):
         # print(f"[DEBUG] Sent {data_type} data: {message}")
     except Exception as e:
