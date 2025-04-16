@@ -1,0 +1,20 @@
+# Camera index
+FRONT_CAMERA_INDEX: 0
+DOWN_CAMERA_INDEX: 4
+
+# Camera attempt parameters
+MAX_ATTEMPTS: 10
+REINIT_ATTEMPTS: 5
+
+
+# Camera attempt parameters
+FRAME_WIDTH: 640
+FRAME_HEIGHT: 480
+FRAME_FPS: 30
+
+# Publish rate (Hz) - how often we process frames and send data
+PUBLISH_RATE: 5.0  # 5 Hz
+
+# UDP settings
+UDP_IP: "192.168.3.2"
+UDP_PORT: 5005
