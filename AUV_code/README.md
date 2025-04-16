@@ -1,26 +1,31 @@
-# CavePI Perception and Control
+# ROS2 Package for Perception and Control of CavePI AUV
 
-## Installations:
+## Compatible Platform
+Jetson Orin Nano 8GB
+
+Jetpack 6
+
+Python 3.10
+
+Cuda xx
+
+Tensor RT xx
+
+## Usage:
 
 
-1. If you have a .pth model, convert to onnx. Ideally it should be done on the host machine.
+1. Download and place this folder inside your `ros2_ws/src` directory.
+2. Download the model weights from here: [Dropbox link](www.somelink.com)
+   
+   You will find .onnx files as well as .engine files. If your platform matches the configuration described above, you can directly use the .engine files. Otherwise, download the .onnx file in your Jetson device and convert it to .engine format:
    ```sh
-    python3 torch2onnx.py (require torch and torchvision)
-   ```
-
-2. Convert onnx model to tensorRT engine (we are using this).
-   ```sh
-    /usr/src/tensorrt/bin/trtexec --onnx=rope_seg_deeplabresnet101_2.onnx --saveEngine=deeplabresnet101_2.engine
-   ```
-  Or, convert onnx model to tensorRT trt format (we are not using this).
-   ```sh
-    /usr/src/tensorrt/bin/trtexec --onnx=rope_seg_deeplabresnet101_2.onnx --saveEngine=deeplabresnet101_2.trt --fp16
+    /usr/src/tensorrt/bin/trtexec --onnx=<onnx_filename> --saveEngine=<engine_filename>
    ```
 4. Build the ROS package.
    ```sh
-   colcon build --packages-select detector
+   colcon build --packages-select <package_name>
    ```
-6. Run the caveline detector node.
+5. Run the caveline detector node.
    ```sh
    ros2 run detector caveline_detection_main.py
    ```
