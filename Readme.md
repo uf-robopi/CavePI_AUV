@@ -8,7 +8,7 @@ This repository contains the design files, operational codes, and digital twin v
 - AUV_dt: Contains the codes for ROS-Gazebo based digital twin (DT) of CavePI.
 
 #### TODO
-- update link to CAD files
+- ~~update link to CAD files~~
 - Add rpi codes
 - Add dt codes
 
