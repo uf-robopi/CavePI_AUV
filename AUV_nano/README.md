@@ -1,7 +1,7 @@
 # ROS2 Package for Perception and Control of CavePI AUV
 
 ## Compatible Platform
-Jetson Orin Nano 8GB
+Jetson Nano 2GB
 
 Jetpack 6
 

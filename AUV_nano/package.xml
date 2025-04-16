@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>detector</name>
+  <name>AUV_nano</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="cavepi@todo.todo">cavepi</maintainer>
+  <description>ROS2 Package for Perception and Control of CavePI AUV</description>
+  <maintainer email="adnanabdullah@ufl.edu">Adnan Abdullah</maintainer>
   <license>Apache-2.0</license>
 
   <depend>rclpy</depend>

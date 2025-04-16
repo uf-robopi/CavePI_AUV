@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 from glob import glob
 import os
 
-package_name = 'detector'
+package_name = 'AUV_nano'
 
 setup(
     name=package_name,
@@ -18,13 +18,14 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='cavepi',
-    maintainer_email='cavepi@todo.todo',
-    description='TODO: Package description',
+    maintainer_email='adnanabdullah@ufl.edu',
+    description='ROS2 Package for Perception and Control of CavePI AUV',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'caveline_detection_main = detector.caveline_detection_main:main',
+            'detector = AUV_nano.detector:main',
+            'planner = AUV_nano.planner:main',
         ],
     },
 )

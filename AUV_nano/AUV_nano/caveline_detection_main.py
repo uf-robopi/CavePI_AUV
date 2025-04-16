@@ -28,11 +28,11 @@ class MainScriptNode(Node):
             config = yaml.safe_load(f)
 
         # Create publishers for data topics
-        self.qr_pub = self.create_publisher(Int32, 'qr_info', 10)
-        self.pose_pub = self.create_publisher(String, 'pose', 10)
-        self.waypoints_pub = self.create_publisher(Point, 'waypoints', 10)
+        self.qr_pub = self.create_publisher(Int32, 'qr_data', 10)
+        self.state_pub = self.create_publisher(String, 'state_data', 10)
+        self.waypoints_pub = self.create_publisher(Point, 'waypoints_data', 10)
         self.closest_point_pub = self.create_publisher(Point, 'closest_point', 10)
-        self.angle_pub = self.create_publisher(Float32, 'angle', 10)
+        self.angle_pub = self.create_publisher(Float32, 'angle_data', 10)
 
         # Directories for saving frames (relative to the current working directory)
         run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -78,7 +78,7 @@ class MainScriptNode(Node):
             ret_front, frame_front = self.front_camera.read()
             if not ret_front or frame_front is None:
                 self.get_logger().warn("Failed to read frame from front camera.")
-                qr_value = 100
+                qr_value = -1
             else:
                 try:
                     data, points, _ = self.qr_detector.detectAndDecode(frame_front)
@@ -86,13 +86,13 @@ class MainScriptNode(Node):
                         try:
                             qr_value = int(data)
                         except ValueError:
-                            self.get_logger().warn("Non-numeric QR code: {}. Using 100.".format(data))
-                            qr_value = 100
+                            self.get_logger().warn("Non-numeric QR code: {}. Using -1.".format(data))
+                            qr_value = -1
                     else:
-                        qr_value = 100
+                        qr_value = -1
                 except cv2.error as e:
                     self.get_logger().error("OpenCV QR detection failed: {}".format(e))
-                    qr_value = 100
+                    qr_value = -1
 
                 if not self.front_camera.isOpened():
                     self.get_logger().error("Front camera lost connection; reinitializing...")
@@ -208,10 +208,10 @@ class MainScriptNode(Node):
                 cv2.waitKey(1)
 
                 # --- Publish processed data ---
-                # Publish pose (direction)
-                pose_msg = String()
-                pose_msg.data = direction
-                self.pose_pub.publish(pose_msg)
+                # Publish state: Lost, Straight, Turn
+                state_msg = String()
+                state_msg.data = direction
+                self.state_pub.publish(state_msg)
 
                 # Publish next_point as waypoints (using Point, with z = 0)
                 waypoints_msg = Point()
@@ -221,11 +221,11 @@ class MainScriptNode(Node):
                 self.waypoints_pub.publish(waypoints_msg)
 
                 # Publish closest_point (using Point, with z = 0)
-                closest_point_msg = Point()
-                closest_point_msg.x = float(closest_point[0])
-                closest_point_msg.y = float(closest_point[1])
-                closest_point_msg.z = 0.0
-                self.closest_point_pub.publish(closest_point_msg)
+                # closest_point_msg = Point()
+                # closest_point_msg.x = float(closest_point[0])
+                # closest_point_msg.y = float(closest_point[1])
+                # closest_point_msg.z = 0.0
+                # self.closest_point_pub.publish(closest_point_msg)
 
                 # Publish angle (next_heading_deg)
                 angle_msg = Float32()
