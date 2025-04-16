@@ -15,7 +15,7 @@ This repository contains the design files, operational codes, and digital twin v
 This work is supported in part by the UF research grant #132763 and NSF award #2330416. 
 We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto.
 
-## Citation
+## Publication
 If you use this repository in your research, please cite the following paper.
 ```
 @article{gupta2025demonstrating,
