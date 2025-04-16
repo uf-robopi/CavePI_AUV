@@ -57,7 +57,7 @@ class Detector(Node):
         os.makedirs(self.RAW_FRAMES_DIR, exist_ok=True)
 
         # Read engine file and prepare bindings
-        engine_filename = 'deeplabmbnet_3.engine'
+        engine_filename = 'mobilenet.engine'
         engine_file = os.path.join(package_share, 'weights', engine_filename)
         self.get_logger().info("Loading TensorRT engine from: " + engine_file)
         (self.engine, self.bindings, self.host_inputs, self.cuda_inputs, 
