@@ -1,0 +1,22 @@
+# ROS2 build outputs
+build/
+install/
+log/
+weights/
+*.pyc
+__pycache__/
+
+# Output/data files
+*.engine
+*.onnx
+*.pth
+*.trt
+*.bag
+*.log
+*.jpg
+*.png
+*.mp4
+data/
+output/
+tmp/
+
