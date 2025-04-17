@@ -30,7 +30,7 @@ class Detector(Node):
         super().__init__('detector')
 
         # Package directory
-        package_share = get_package_share_directory('AUV_nano')
+        package_share = get_package_share_directory('auv_nano')
 
         # Read config params
         config_file = os.path.join(package_share, 'config', 'config.yaml')

@@ -16,7 +16,7 @@ from ament_index_python.packages import get_package_share_directory
 
 
 # Load configuration
-package_share = get_package_share_directory('AUV_nano')
+package_share = get_package_share_directory('auv_nano')
 config_file = os.path.join(package_share, 'config', 'config.yaml')
 with open(config_file, 'r') as f:
     config = yaml.safe_load(f)

@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 from glob import glob
 import os
 
-package_name = 'AUV_nano'
+package_name = 'auv_nano'
 
 setup(
     name=package_name,
@@ -24,8 +24,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'detector = AUV_nano.detector:main',
-            'planner = AUV_nano.planner:main',
+            'detector = auv_nano.detector:main',
+            'planner = auv_nano.planner:main',
         ],
     },
 )

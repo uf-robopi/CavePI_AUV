@@ -10,7 +10,7 @@ def generate_launch_description():
     return LaunchDescription([
         # Launch detector node
         Node(
-            package='AUV_nano',
+            package='auv_nano',
             executable='detector',
             name='detector',
             output='screen',
@@ -20,7 +20,7 @@ def generate_launch_description():
 
         # Launch planner node
         Node(
-            package='AUV_nano',
+            package='auv_nano',
             executable='planner',
             name='planner',
             output='screen',
