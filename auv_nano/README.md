@@ -41,6 +41,6 @@ Other specs (Platform dependent):
    ```sh
    ros2 launch auv_nano detector_and_planner.launch.py
    ```
-   If a line is detected from the downward camera, the planner will send control commands to Raspberry Pi. Please refer to the `AUV_rpi` folder to setup the Raspberry Pi codes.
+   If a line is detected from the downward camera, the planner will send control commands to Raspberry Pi. Please refer to the `auv_rpi` folder to setup the Raspberry Pi codes.
 
 
