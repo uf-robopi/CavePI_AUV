@@ -1,0 +1,278 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <gui>
+      <camera name="user_camera">
+        <!-- <pose>0 0.5 6 0 1.45 -1.58</pose> -->
+        <pose>5 6 2 0 0 -2.1</pose>
+      </camera>
+    </gui>
+
+    <scene>
+      <ambient> 0.25 0.3 0.5 1</ambient>
+      <grid>false</grid>
+    </scene>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 100 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>22.86 12.8</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>0xffff</collide_bitmask>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>22.86 12.8</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+
+    <model name="ceiling_plane">
+      <static>true</static>
+      <pose>0 0 2.44 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>22.86 12.8 .01</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <box>
+              <size>22.86 12.8 .01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> 0 0 1 0.0 </ambient>
+            <diffuse> 0 0 1 0.0 </diffuse>
+            <!--<script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/BlueTransparent</name>
+            </script>-->
+          </material>
+        </visual>
+
+        <visual name="visual_sideA">
+          <pose>11.43 0 -1.22 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <box>
+              <size>0.01 12.8 2.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> 0 0 1 0.2 </ambient>
+            <diffuse> 0 0 1 0.2 </diffuse>
+          </material>
+        </visual>
+
+        <visual name="visual_sideB">
+          <pose>-11.43 0 -1.22 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <box>
+              <size>0.01 12.8 2.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> 0 0 1 0.2 </ambient>
+            <diffuse> 0 0 1 0.2 </diffuse>
+          </material>
+        </visual>
+
+        <visual name="visual_sideC">
+          <pose>0 6.4 -1.22 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <box>
+              <size>22.86 0.01 2.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> 0 0 1 0.2 </ambient>
+            <diffuse> 0 0 1 0.2 </diffuse>
+          </material>
+        </visual>
+
+        <visual name="visual_sideD">
+          <pose>0 -6.4 -1.22 0 0 0</pose>
+          <cast_shadows>false</cast_shadows>
+          <geometry>
+            <box>
+              <size>22.86 0.01 2.44</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient> 0 0 1 0.2 </ambient>
+            <diffuse> 0 0 1 0.2 </diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- LARGER HEXAGON -->
+    <model name="edge1">
+      <static>true</static>
+      <pose>0 2.598 0.01 0 1.5708 0</pose>  
+      <link name="edge1">        
+        <visual name="visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>3.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="edge2">
+      <static>true</static>
+      <pose>2.25 1.299 0.01 0 1.5708 -1.0472</pose>  
+      <link name="edge2">        
+        <visual name="visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>3.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="edge3">
+      <static>true</static>
+      <pose>2.25 -1.299 0.01 0 0 -2.0944</pose>  
+      <link name="edge3">        
+        <visual name="visual">
+          <pose>0 0 0 0 1.5708 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>3.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="edge4">
+      <static>true</static>
+      <pose>0 -2.598 0.01 0 1.5708 0</pose>  
+      <link name="edge4">        
+        <visual name="visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>3.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="edge5">
+      <static>true</static>
+      <pose>-2.25 -1.299 0.01 0 1.5708 2.0944</pose>  
+      <link name="edge5">        
+        <visual name="visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>3.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="edge6">
+      <static>true</static>
+      <pose>-2.25 1.299 0.01 0 1.5708 1.0472</pose>  
+      <link name="edge6">        
+        <visual name="visual">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.02</radius>
+              <length>3.0</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 0 0 1</ambient>
+            <diffuse>1 0 0 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

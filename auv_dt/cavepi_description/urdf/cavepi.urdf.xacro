@@ -1,0 +1,673 @@
+<?xml version="1.0" ?>
+<robot name="CavePI" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="tube_od" value="0.1651" />
+    <xacro:property name="tube_id" value="0.1524" />
+    <xacro:property name="tube_length" value="0.29845" />
+    <xacro:property name="scale_size" value="1" />
+    <xacro:property name="negligible_mass" value="1.0e-6" />
+    <xacro:property name="negligible_inertia" value="1.0e-12" />
+    <xacro:property name="negligible_volume" value="1.0e-9" />
+
+
+    <material name="Custom_Color">
+        <color rgba="0.1 0.1 0.1 0.8" />
+    </material>
+
+    <material name="Orange">
+        <color rgba="1.0 0.43 0.04 0.8" />
+    </material>
+
+    <material name="Black">
+        <color rgba="0 0 0 0.8" />
+    </material>
+
+    <material name="Green">
+        <color rgba="0.0 0.8 0.0 1.0" />
+    </material>
+    
+    <!-- base_link DEFINITION -->
+    <link name="base_link" />
+
+
+    <!-- main_body_link_cavepi DEFINITION -->
+    <link name="main_body_link_cavepi">
+        <visual>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/main_body_link_cavepi.STL" 
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+            <material name="Custom_Color" />
+        </visual>
+
+        <collision>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/main_body_link_cavepi.STL" 
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+        </collision>
+
+        <inertial>
+            <origin xyz="${scale_size*-0.8e-3} 0 ${scale_size*-4.55e-3}" rpy="0 0 0" />
+            <mass value="8.5" />
+            <inertia ixx="41763721.74e-9" ixy="76.64e-9" ixz="-1071029.52e-9"
+                     iyy="99391057.27e-9" iyz="603.74e-9"
+                     izz="101413261.83e-9" />
+        </inertial>
+    </link>
+
+    <!-- base_link TO main_body_link_cavepi JOINT DEFINITION -->
+    <joint name="base_to_main_body_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="main_body_link_cavepi" />
+        <origin xyz="0 0 ${scale_size*tube_od/2}" rpy="0 0 0" />
+    </joint>
+
+
+    <!-- front_right_thruster_link_cavepi DEFINITION -->
+    <link name="front_right_thruster_link_cavepi">
+        <visual>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/front_right_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Green" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/front_right_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 ${scale_size*7.53e-3}" rpy="0 0 0" />
+            <mass value="7.74e-3" />
+            <inertia ixx="2207.32e-9" ixy="-0.26e-9" ixz="0.03e-9"
+                     iyy="2207.13e-9" iyz="0.04e-9"
+                     izz="3214.96e-9" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO front_right_thruster_link_cavepi JOINT DEFINITION -->
+    <joint name="body_to_fr_thruster_joint" type="continuous">
+        <parent link="main_body_link_cavepi" />
+        <child link="front_right_thruster_link_cavepi" />
+        <origin xyz="0 ${scale_size*0.1435} 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1" />
+    </joint>
+
+
+    <!-- front_left_thruster_link_cavepi DEFINITION -->
+    <link name="front_left_thruster_link_cavepi">
+        <visual>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/front_left_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Green" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/front_left_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 ${scale_size*7.53e-3}" rpy="0 0 0" />
+            <mass value="7.74e-3" />
+            <inertia ixx="2207.32e-9" ixy="-0.26e-9" ixz="0.03e-9"
+                     iyy="2207.13e-9" iyz="0.04e-9"
+                     izz="3214.96e-9" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO front_left_thruster_link_cavepi JOINT DEFINITION -->
+    <joint name="body_to_fl_thruster_joint" type="continuous">
+        <parent link="main_body_link_cavepi" />
+        <child link="front_left_thruster_link_cavepi" />
+        <origin xyz="0 ${scale_size*-0.1435} 0" rpy="0 0 0"/>
+        <axis xyz="0 0 1" />
+    </joint>
+
+
+    <!-- rear_right_thruster_link_cavepi DEFINITION -->
+    <link name="rear_right_thruster_link_cavepi">
+        <visual>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/rear_right_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
+            <material name="Green" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/rear_right_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 ${scale_size*7.53e-3}" rpy="0 0 0" />
+            <mass value="7.74e-3" />
+            <inertia ixx="2207.32e-9" ixy="-0.26e-9" ixz="0.03e-9"
+                     iyy="2207.13e-9" iyz="0.04e-9"
+                     izz="3214.96e-9" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO rear_right_thruster_link_cavepi JOINT DEFINITION -->
+    <joint name="body_to_rr_thruster_joint" type="continuous">
+        <parent link="main_body_link_cavepi" />
+        <child link="rear_right_thruster_link_cavepi" />
+        <origin xyz="${scale_size*-0.09058} ${scale_size*0.1435} ${scale_size*0.004}" rpy="0 0 0"/>
+        <axis xyz="1 0 0" />
+    </joint>
+
+
+    <!-- rear_left_thruster_link_cavepi DEFINITION -->
+    <link name="rear_left_thruster_link_cavepi">
+        <visual>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/rear_left_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 ${-pi/2} 0" />
+            <material name="Green" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <mesh filename="package://nemogator_description/meshes/rear_left_thruster_link_cavepi.STL"
+                      scale="${scale_size} ${scale_size} ${scale_size}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 ${-pi/2} 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 ${scale_size*7.53e-3}" rpy="0 0 0" />
+            <mass value="7.74e-3" />
+            <inertia ixx="2207.32e-9" ixy="-0.26e-9" ixz="0.03e-9"
+                     iyy="2207.13e-9" iyz="0.04e-9"
+                     izz="3214.96e-9" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO rear_left_thruster_link_cavepi JOINT DEFINITION -->
+    <joint name="body_to_rl_thruster_joint" type="continuous">
+        <parent link="main_body_link_cavepi" />
+        <child link="rear_left_thruster_link_cavepi" />
+        <origin xyz="${scale_size*-0.09058} ${scale_size*-0.1435} ${scale_size*0.004}" rpy="0 0 0"/>
+        <axis xyz="1 0 0" />
+    </joint>
+
+
+    <!-- downward_camera_link DEFINITION -->
+    <link name="downward_camera_link">
+        <visual>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Black" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="${negligible_mass}" />
+            <inertia ixx="${negligible_inertia}" ixy="0" ixz="0"
+                     iyy="${negligible_inertia}" iyz="0"
+                     izz="${negligible_inertia}" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO downward_camera_link JOINT DEFINITION -->
+    <joint name="body_to_down_cam_joint" type="fixed">
+        <parent link="main_body_link_cavepi" />
+        <child link="downward_camera_link" />
+        <origin xyz="${scale_size*-0.04591} 0 ${scale_size*0.0687}" rpy="${-pi/2} ${-pi/2} 0"/>
+    </joint>
+
+
+    <!-- front_camera_link DEFINITION -->
+    <link name="front_camera_link">
+        <visual>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Black" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="${negligible_mass}" />
+            <inertia ixx="${negligible_inertia}" ixy="0" ixz="0"
+                     iyy="${negligible_inertia}" iyz="0"
+                     izz="${negligible_inertia}" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO front_camera_link JOINT DEFINITION -->
+    <joint name="body_to_front_cam_joint" type="fixed">
+        <parent link="main_body_link_cavepi" />
+        <child link="front_camera_link" />
+        <origin xyz="${scale_size*0.186} 0 0" rpy="${pi} 0 0"/>
+    </joint>
+
+
+    <!-- ping2_sonar_link DEFINITION -->
+    <link name="ping2_sonar_link">
+        <visual>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Black" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="${negligible_mass}" />
+            <inertia ixx="${negligible_inertia}" ixy="0" ixz="0"
+                     iyy="${negligible_inertia}" iyz="0"
+                     izz="${negligible_inertia}" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO ping2_sonar_link JOINT DEFINITION -->
+    <joint name="body_to_sonar_joint" type="fixed">
+        <parent link="main_body_link_cavepi" />
+        <child link="ping2_sonar_link" />
+        <origin xyz="${scale_size*0.18621} 0 ${scale_size*0.17343}" rpy="0 0 0"/>
+    </joint>
+
+
+    <!-- bar30_sensor_link DEFINITION -->
+    <link name="bar30_sensor_link">
+        <visual>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Black" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="${negligible_mass}" />
+            <inertia ixx="${negligible_inertia}" ixy="0" ixz="0"
+                     iyy="${negligible_inertia}" iyz="0"
+                     izz="${negligible_inertia}" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO bar30_sensor_link JOINT DEFINITION -->
+    <joint name="body_to_bar30_joint" type="fixed">
+        <parent link="main_body_link_cavepi" />
+        <child link="bar30_sensor_link" />
+        <origin xyz="${scale_size*-0.16684} 0 0" rpy="0 0 0"/>
+    </joint>
+
+
+    <!-- imu_link DEFINITION -->
+    <link name="imu_link">
+        <visual>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="Black" />
+        </visual>
+ 
+        <collision>
+            <geometry>
+                <sphere radius = "${scale_size*0.001}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+ 
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="${negligible_mass}" />
+            <inertia ixx="${negligible_inertia}" ixy="0" ixz="0"
+                     iyy="${negligible_inertia}" iyz="0"
+                     izz="${negligible_inertia}" />
+        </inertial>
+    </link>
+ 
+    <!-- main_body_link_cavepi TO imu_link JOINT DEFINITION -->
+    <joint name="body_to_imu_joint" type="fixed">
+        <parent link="main_body_link_cavepi" />
+        <child link="imu_link" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+
+
+    <!-- GAZEBO PLUGINS -->
+
+    <gazebo reference="main_body_link_cavepi">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="front_right_thruster_link_cavepi">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="front_left_thruster_link_cavepi">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="rear_right_thruster_link_cavepi">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="rear_left_thruster_link_cavepi">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+
+    <!-- BUOYANCY PLUIGN -->
+    <gazebo>
+        <plugin name="buoyancy" filename="libBuoyancyPlugin.so">
+            <fluid_density>1000</fluid_density>
+            <link name="base_link">
+                <center_of_volume>0 0 0</center_of_volume>
+                <volume>8.714e-3</volume>
+            </link>
+
+            <link name="front_right_thruster_link_cavepi">
+                <center_of_volume>0 0 0</center_of_volume>
+                <volume>7.74e-6</volume>
+            </link>
+
+            <link name="front_left_thruster_link_cavepi">
+                <center_of_volume>0 0 0</center_of_volume>
+                <volume>7.74e-6</volume>
+            </link>
+
+            <link name="rear_right_thruster_link_cavepi">
+                <center_of_volume>0 0 0</center_of_volume>
+                <volume>7.74e-6</volume>
+            </link>
+            
+            <link name="rear_left_thruster_link_cavepi">
+                <center_of_volume>0 0 0</center_of_volume>
+                <volume>7.74e-6</volume>
+            </link>
+        </plugin>
+    </gazebo>
+
+
+    <!-- PLUGIN FOR CONTROLLING THE ROBOT USING ROS -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/cavepi</robotNamespace>
+        </plugin>
+    </gazebo>
+
+
+    <!-- PLUGINS FOR APPLYING FORCES TO ALL THE JOINTS AND BODY OF THE ROBOT -->
+    <gazebo>
+        <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
+            <bodyName>front_right_thruster_link_cavepi</bodyName>
+            <topicName>/front_right_thrust</topicName>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
+            <bodyName>front_left_thruster_link_cavepi</bodyName>
+            <topicName>/front_left_thrust</topicName>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
+            <bodyName>rear_right_thruster_link_cavepi</bodyName>
+            <topicName>/rear_right_thrust</topicName>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
+            <bodyName>rear_left_thruster_link_cavepi</bodyName>
+            <topicName>/rear_left_thrust</topicName>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin filename="libgazebo_ros_force.so" name="gazebo_ros_force">
+            <bodyName>base_link</bodyName>
+            <topicName>/drag_force</topicName>
+        </plugin>
+    </gazebo>
+
+
+    <!-- DOWNWARD CAMERA PLUGIN -->
+    <gazebo reference="downward_camera_link">
+        <sensor type="camera" name="downward_camera">
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </camera>
+
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>downward_camera</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>downward_camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+
+    <!-- FRONT CAMERA PLUGIN -->
+    <gazebo reference="front_camera_link">
+        <sensor type="camera" name="front_camera">
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <near>0.02</near>
+                    <far>300</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </camera>
+
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <alwaysOn>true</alwaysOn>
+                <updateRate>0.0</updateRate>
+                <cameraName>front_camera</cameraName>
+                <imageTopicName>image_raw</imageTopicName>
+                <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+                <frameName>front_camera_link</frameName>
+                <hackBaseline>0.07</hackBaseline>
+                <distortionK1>0.0</distortionK1>
+                <distortionK2>0.0</distortionK2>
+                <distortionK3>0.0</distortionK3>
+                <distortionT1>0.0</distortionT1>
+                <distortionT2>0.0</distortionT2>
+            </plugin>
+        </sensor>
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+
+    <!-- PING2 SONAR PLUGIN -->
+    <gazebo reference="ping2_sonar_link">
+        <sensor type="ray" name="ping2_sonar">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>1</samples>
+                        <resolution>1</resolution>
+                        <min_angle>.000001</min_angle>
+                        <max_angle>0</max_angle>
+                    </horizontal>
+                    <vertical>
+                        <samples>2</samples>
+                        <resolution>1</resolution>
+                        <min_angle>1.570795</min_angle>
+                        <max_angle>1.570796</max_angle>
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.3</min>
+                    <max>100.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.01</stddev>
+                </noise>
+            </ray>
+            <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+                <topicName>/sonar_data</topicName>
+                <frameName>ping2_sonar_link</frameName>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+
+    <!-- BAR30 SENSOR (DEPTH) PLUGIN -->
+    <gazebo reference="bar30_sensor_link">
+    <sensor type="ray" name="depth_sensor">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                    <samples>1</samples>
+                    <resolution>1</resolution>
+                    <min_angle>.000001</min_angle>
+                    <max_angle>0</max_angle>
+                </horizontal>
+                <vertical>
+                    <samples>2</samples>
+                    <resolution>1</resolution>
+                    <min_angle>-1.570796</min_angle>
+                    <max_angle>-1.570795</max_angle>
+                </vertical>
+            </scan>
+            <range>
+                <min>0.5</min>
+                <max>30.0</max>
+                <resolution>0.01</resolution>
+            </range>
+            <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.01</stddev>
+            </noise>
+        </ray>
+        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+            <topicName>/raw_depth_data</topicName>
+            <frameName>bar30_sensor_link</frameName>
+        </plugin>
+    </sensor>
+    </gazebo>
+
+
+    <!-- IMU PLUGIN -->
+    <gazebo reference="imu_link">
+        <gravity>true</gravity>
+        <sensor name="imu_sensor" type="imu">
+            <always_on>true</always_on>
+            <update_rate>100</update_rate>
+            <visualize>true</visualize>
+            <topic>__default_topic__</topic>
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+                <topicName>raw_imu_data</topicName>
+                <bodyName>imu_link</bodyName>
+                <updateRateHZ>10.0</updateRateHZ>
+                <gaussianNoise>0.0</gaussianNoise>
+                <xyzOffset>0 0 0</xyzOffset>
+                <rpyOffset>0 0 0</rpyOffset>
+                <frameName>imu_link</frameName>
+                <initialOrientationAsReference>false</initialOrientationAsReference>
+            </plugin>
+            <pose>0 0 0 0 0 0</pose>
+        </sensor>
+    </gazebo>
+    
+
+</robot>
