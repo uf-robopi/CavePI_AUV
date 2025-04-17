@@ -58,8 +58,8 @@ We gratefully acknowledge the following entities for their the open-source CAD d
 | Ballast Weight        | Blue Robotics                 |
 | Light                 | Blue Robotics                 |
 | All fasteners         | McMaster Carr                 |
-| Jetson Nano           | [GrabCAD link](https://grabcad.com/library/nvidia-jetson-nano-2)                   |
-| Raspberry Pi 5        | [GrabCAD link](https://grabcad.com/library/raspberry-pi-5-2)                       |
-| Pixhawk               | [GrabCAD link](https://grabcad.com/library/pixhawk-2-4-8-v1-flight-controller-1)   |
-| Fish-Eye Camera       | [ArduCam link](https://www.arducam.com/arducam-1080p-low-light-wdr-ultra-wide-angle-usb-camera-module-for-computer-2mp-cmos-imx291-160-degree-fisheye-mini-uvc-usb2-0-spy-webcam-board-with-microphone-3-3ft-cable-for-windows-linux-mac-os.html)          |
+| Jetson Nano           | [GrabCAD](https://grabcad.com/library/nvidia-jetson-nano-2)                   |
+| Raspberry Pi 5        | [GrabCAD](https://grabcad.com/library/raspberry-pi-5-2)                       |
+| Pixhawk               | [GrabCAD](https://grabcad.com/library/pixhawk-2-4-8-v1-flight-controller-1)   |
+| Fish-Eye Camera       | [ArduCam](https://www.arducam.com/arducam-1080p-low-light-wdr-ultra-wide-angle-usb-camera-module-for-computer-2mp-cmos-imx291-160-degree-fisheye-mini-uvc-usb2-0-spy-webcam-board-with-microphone-3-3ft-cable-for-windows-linux-mac-os.html)          |
 
