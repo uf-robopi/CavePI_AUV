@@ -2,14 +2,15 @@
 
 ## Compatible Platform
 
-The package is tested and verified on Jetson Nano 2GB. It also runs on Jetson Orin Nano with minimal modification in the perception module. Please get in touch with the contributors for Jetson Orin code.
+The package is tested and verified on Jetson Nano 2GB. It also runs on Jetson Orin Nano with minimal modification in the perception code. Please get in touch with the contributors for Jetson Orin code.
 
 Other specs:
-- ROS2 Humble
-- Jetpack 4.6.4
+- Ubuntu 18.04
+- ROS2 Foxy
+- Jetpack 4.6.3
 - Python 3.6.9
 - Cuda 10.2, CuDNN 8.2.1
-- Tensor RT 6.0.1.10
+- Tensor RT 8.2.1.1
 
 ## Usage
 
