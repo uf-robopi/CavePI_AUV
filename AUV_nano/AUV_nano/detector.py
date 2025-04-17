@@ -38,9 +38,9 @@ class Detector(Node):
             config = yaml.safe_load(f)
 
         # Create publishers
-        self.qr_pub = self.create_publisher(Int32, 'qr_info', 10)
-        self.map_pub = self.create_publisher(Image, 'map', 10)
-        self.lines_pub = self.create_publisher(Float32MultiArray, 'detected_lines', 10)
+        self.qr_pub = self.create_publisher(Int32, '/qr_info', 10)
+        self.map_pub = self.create_publisher(Image, '/map', 10)
+        self.lines_pub = self.create_publisher(Float32MultiArray, '/detected_lines', 10)
 
         # CVBridge for converting OpenCV images to ROS Image messages
         self.bridge = CvBridge()

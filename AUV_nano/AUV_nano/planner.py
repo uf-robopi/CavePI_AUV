@@ -48,15 +48,16 @@ class Planner(Node):
         self.map_image = None
 
         # Subscribe to map and detected lines
-        self.lines_sub = self.create_subscription(Float32MultiArray, 'detected_lines', self.lines_callback, 10)
-        self.map_sub = self.create_subscription(Image, 'map', self.map_callback, 10)
+        self.lines_sub = self.create_subscription(Float32MultiArray, '/detected_lines', self.lines_callback, 10)
+        self.map_sub = self.create_subscription(Image, '/map', self.map_callback, 10)
 
 
         # Create publishers for data topics
-        self.state_pub = self.create_publisher(String, 'state', 10)
-        self.waypoints_pub = self.create_publisher(Point, 'waypoints', 10)
-        self.closest_point_pub = self.create_publisher(Point, 'closest_point', 10)
-        self.angle_pub = self.create_publisher(Float32, 'angle', 10)
+        self.state_pub = self.create_publisher(String, '/state', 10)
+        self.waypoints_pub = self.create_publisher(Point, '/waypoints', 10)
+        self.closest_point_pub = self.create_publisher(Point, '/closest_point', 10)
+        self.angle_pub = self.create_publisher(Float32, '/angle', 10)
+        self.processed_image_pub = self.create_publisher(Image, '/processed_image', 10)
 
         # CVBridge for converting ROS Image to OpenCV format
         self.bridge = CvBridge()
@@ -171,9 +172,13 @@ class Planner(Node):
                 cv2.arrowedLine(line_overlayed_map, (screen_center_x, screen_center_y),
                                 (img_next_x, img_next_y), (255, 0, 0), 2, tipLength=0.1)
 
-            # Optional: show the processed image with planned waypoints
-            cv2.imshow("Planner Processed View", line_overlayed_map)
-            cv2.waitKey(1)
+            ## Optional: show the processed image with planned waypoints
+            # cv2.imshow("Planner Processed View", line_overlayed_map)
+            # cv2.waitKey(1)
+            
+            # Publish the line overlayed map
+            ros_line_overlayed_map= self.bridge.cv2_to_imgmsg(line_overlayed_map, encoding="bgr8")
+            self.processed_image_pub.publish(ros_line_overlayed_map)
 
             # Publish state
             state_msg = String()
