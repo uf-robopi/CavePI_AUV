@@ -213,12 +213,14 @@ def PrepareEngine(engine_file):
 
     # Create input and output buffer
     for binding in engine:
-        size = trt.volume(engine.get_tensor_shape(binding)) * batch
+        # size = trt.volume(engine.get_binding_shape(binding)) * batch # For Jetson nano
+        size = trt.volume(engine.get_tensor_shape(binding)) * batch # For jetson Orin nano
         host_mem = cuda.pagelocked_empty(shape=[size], dtype=np.float32)
         cuda_mem = cuda.mem_alloc(host_mem.nbytes)
 
         bindings.append(int(cuda_mem))
-        if engine.get_tensor_mode(binding) == trt.TensorIOMode.INPUT:
+        # if engine.binding_is_input(binding): # For Jetson nano
+        if engine.get_tensor_mode(binding) == trt.TensorIOMode.INPUT: # For jetson Orin nano
             host_inputs.append(host_mem)
             cuda_inputs.append(cuda_mem)
         else:
