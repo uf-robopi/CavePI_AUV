@@ -23,10 +23,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'autopilot_util = cavepi_controller.autopilot_util:main',
-            'autopilot = cavepi_controller.autopilot:main',
-            'data_receiver = cavepi_controller.data_receiver:main',
-            'ping2_publisher = cavepi_controller.ping2_publisher:main', 
+            'autopilot_util = auv_rpi.autopilot_util:main',
+            'autopilot = auv_rpi.autopilot:main',
+            'data_receiver = auv_rpi.data_receiver:main',
+            'ping2_publisher = auv_rpi.ping2_publisher:main', 
         ],
     },
 )

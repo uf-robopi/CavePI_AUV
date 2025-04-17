@@ -3,8 +3,8 @@
 <package format="3">
   <name>auv_rpi</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="aqua2@todo.todo">aqua2</maintainer>
+  <description>ROS2 Package for Autopilot of CavePI AUV</description>
+  <maintainer email="gupta.alankrit@ufl.edu">Alankrit Gupta</maintainer>
   <license>Apache-2.0</license>
 
   <depend>rclpy</depend>
