@@ -8,6 +8,8 @@ import cv2
 import numpy as np
 import rclpy
 import yaml
+import time
+import socket
 from cv_bridge import CvBridge
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray
@@ -16,7 +18,7 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
 from ament_index_python.packages import get_package_share_directory
 from .perception_util import PrepareEngine, InferenceOnFrame
-from .comm_util import initialize_camera, reinitialize_camera
+from .comm_util import initialize_camera, reinitialize_camera, send_udp_data
 
 
 class Planner(Node):
@@ -35,6 +37,11 @@ class Planner(Node):
         config_file = os.path.join(package_share, 'config', 'config.yaml')
         with open(config_file, 'r') as f:
             config = yaml.safe_load(f)
+
+        self.UDP_IP = config['UDP_IP']
+        self.UDP_PORT = config['UDP_PORT']
+        self.PUBLISH_RATE = config['PUBLISH_RATE']  # 5 Hz
+        self.SLEEP_TIME = 1.0 / self.PUBLISH_RATE
 
         # Subscribed message containers
         self.detected_lines = None
@@ -58,6 +65,10 @@ class Planner(Node):
         self.prev_point = np.array([0.0, 0.0])
         self.prev_closest_point = np.array([0.0, 0.0])
         self.DIRECTION_HISTORY_SIZE = 3
+
+        # Create UDP socket (alternate comm channel for ROS2)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
 
         # Set processing rate (10 Hz) using a timer
         self.timer = self.create_timer(1.0 / 10.0, self.timer_callback)
@@ -180,6 +191,15 @@ class Planner(Node):
             angle_msg = Float32()
             angle_msg.data = float(next_heading_deg)
             self.angle_pub.publish(angle_msg)
+
+            # Send control commands to RPi over UDP in case ROS2 connection is lost
+            print("[INFO] Sending control commands")
+            send_udp_data(self.sock, "pose", {"direction": direction}, self.UDP_IP, self.UDP_PORT)
+            send_udp_data(self.sock, "waypoints", {"x": float(next_point[0]), "y": float(next_point[1])}, self.UDP_IP, self.UDP_PORT)
+            send_udp_data(self.sock, "angle", {"angle": float(next_heading_deg)}, self.UDP_IP, self.UDP_PORT)
+
+            # Sleep to maintain ~5Hz
+            time.sleep(self.SLEEP_TIME)
 
         except Exception as e:
             self.get_logger().error("Exception in timer callback: {}".format(e))
