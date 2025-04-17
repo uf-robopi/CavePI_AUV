@@ -14,7 +14,7 @@ This repository contains the design files, operational codes, and digital twin s
 
 ## Resources
 
-[[ArXiv pre-print]](https://arxiv.org/pdf/2502.05384) [[project page]](https://robopi.ece.ufl.edu/cavepi.html)  [[demo]](https://youtu.be/p41RzSAfM7g)
+[[ArXiv pre-print]](https://arxiv.org/pdf/2502.05384) [[project page]](https://robopi.ece.ufl.edu/cavepi.html)  [[demo]](https://youtu.be/9BPpB1nu98E)
 
 ## Acknowledgements
 
