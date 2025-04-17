@@ -23,7 +23,7 @@ Other specs (Platform dependent):
 1. Clone the repo and place the `auv_nano` folder inside `~/ros2_ws/src/` directory of your jetson device.
 2. Download the model weights from here: [Dropbox link](https://www.dropbox.com/scl/fo/6oin10fofx2k8ffhxluia/AJO9DvS03urmhyW1etIEWww?rlkey=bu4xx6g4re4qdunjx313njqqo&st=e0ep0fvo&dl=0)
    
-   You will find `.onnx` files as well as `.engine` files. If your platform matches the configuration described above, you can directly use the `.engine` files. For different platforms such as Jetson Orin, download the `.onnx` file in your Jetson device and convert it to `.engine` format:
+   You will find `.onnx` files as well as `.engine` files. If your platform matches the Jetson Nano 2GB configuration described above, you can directly use the `.engine` files. For different platforms such as Jetson Orin, download the `.onnx` file in your Jetson device and convert it to `.engine` format:
    ```sh
     /usr/src/tensorrt/bin/trtexec --onnx=<onnx_filename> --saveEngine=<engine_filename>
    ```
