@@ -13,8 +13,6 @@ __pycache__/
 *.trt
 *.bag
 *.log
-*.jpg
-*.png
 *.mp4
 data/
 output/
