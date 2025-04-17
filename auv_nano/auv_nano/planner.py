@@ -17,8 +17,7 @@ from std_msgs.msg import Int32, String, Float32
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
 from ament_index_python.packages import get_package_share_directory
-from .perception_util import PrepareEngine, InferenceOnFrame
-from .comm_util import initialize_camera, reinitialize_camera, send_udp_data
+from .comm_util import send_udp_data
 
 
 class Planner(Node):
