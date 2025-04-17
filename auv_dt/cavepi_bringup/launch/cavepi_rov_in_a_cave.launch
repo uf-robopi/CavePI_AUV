@@ -1,0 +1,49 @@
+<launch>
+    <!-- This launch file is responsible for teleoperation of CavePI in a cave model in Gazebo. -->
+
+    <arg name="use_sim_time" default="true"/>
+    <arg name="world_name" default="cave_world.world"/>
+    <arg name="enable_ros_network" default="true" />
+
+    <!--Creating an argument for the NemoGator URDF Model -->
+    <arg name="model" default="$(find nemogator_description)/urdf/cavepi.urdf.xacro"/>
+
+    <!-- Setting use_sim_time flag -->
+    <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+
+    <group>
+        <param name="gazebo/enable_ros_network" value="$(arg enable_ros_network)" />
+    </group>
+
+    <!-- Launching the 'gzclient' and 'gzserver' Nodes from the 'gazebo_ros' Package -->
+    <node name="gazebo" pkg="gazebo_ros" type="gzserver" respawn="false" output="screen"
+        args="-u -e ode $(find nemogator_description)/worlds/$(arg world_name)" />
+
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" args="--verbose"/>
+
+    <!--Launching the CavePI URDF model into Gazebo using the 'robot_state_publisher' Node -->
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="100.0" />
+    </node>
+
+    <!-- Spawning the robot in Gazebo -->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen"
+            args="-x 0 -y 2.598 -z 1.0 -urdf -model CavePI -param robot_description -R 3.1416 -Y 0" />
+
+    <!-- Launching the controller node for the movement of the robot in Gazebo -->
+    <node pkg="nemogator_controller" type="cavepi_control_node.py" name="cavepi_control_node" />
+
+    <!-- Please launch the 'cavepi_teleop_keyboard' node to start the teleoperation of the robot in Gazebo -->
+
+    <!-- <node pkg="nemogator_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher" /> -->
+    <node pkg="nemogator_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher">
+        <param name="use_sim_time" value="true"/>
+        <rosparam>
+            /wait_for_clock: true
+        </rosparam>
+    </node>
+
+
+</launch>
