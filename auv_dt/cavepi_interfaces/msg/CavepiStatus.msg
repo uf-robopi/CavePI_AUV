@@ -1,0 +1,6 @@
+std_msgs/Header header
+string pose
+int32 detected_contours
+float32 angle
+std_msgs/Float32MultiArray control_cmd
+std_msgs/Float32MultiArray waypoint
