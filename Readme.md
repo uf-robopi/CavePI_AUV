@@ -9,7 +9,7 @@ This repository contains the design files, operational codes, and digital twin s
 
 #### TODO
 - ~~update link to CAD files~~
-- Add rpi codes
+- ~~Add rpi codes~~
 - Add dt codes
 
 ## Resources
