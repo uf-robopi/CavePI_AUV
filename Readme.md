@@ -24,10 +24,10 @@ We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitatin
 ## Publication
 If you use this repository in your research, please cite the following paper.
 ```
-@article{gupta2025demonstrating,
+@inproceedings{gupta2025demonstrating,
   title={Demonstrating CavePI: Autonomous Exploration of Underwater Caves by Semantic Guidance},
   author={Gupta, Alankrit and Abdullah, Adnan and Li, Xianyao and Ramesh, Vaishnav and Rekleitis, Ioannis and Islam, Md Jahidul},
-  journal={arXiv preprint arXiv:2502.05384},
+  booktitle={Accepted for Robotics: Science and Systems (RSS)},
   year={2025}
 }
 ```
