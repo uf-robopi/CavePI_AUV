@@ -16,9 +16,9 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='aqua2',
-    maintainer_email='aqua2@todo.todo',
-    description='TODO: Package description',
+    maintainer='Alankrit Gupta',
+    maintainer_email='gupta.alankrit@ufl.edu',
+    description='ROS2 Package for Autopilot of CavePI AUV',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={

@@ -1,6 +1,10 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+# =====================================
+# Author : Alakrit Gupta
+# Email: gupta.alankrit@ufl.edu
+# =====================================
 
 def generate_launch_description():
     ld = LaunchDescription()

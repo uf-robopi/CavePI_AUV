@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# =====================================
+# Author : Alakrit Gupta
+# Email: gupta.alankrit@ufl.edu
+# =====================================
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32, Int32, Bool, Float32MultiArray
