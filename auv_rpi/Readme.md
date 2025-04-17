@@ -15,7 +15,7 @@ Connect the three USB ports of Raspberry Pi 5 to the ethernet port of Jetson Nan
    cd ~/ros2_ws/
    colcon build --packages-select auv_rpi
    ```
-8. Execute the launch file.
+3. Execute the launch file.
    ```sh
    ros2 launch auv_rpi cavepi_auv.launch.py
    ```
