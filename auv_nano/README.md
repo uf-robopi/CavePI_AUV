@@ -27,17 +27,21 @@ Other specs (Platform dependent):
    ```sh
     /usr/src/tensorrt/bin/trtexec --onnx=<onnx_filename> --saveEngine=<engine_filename>
    ```
-3. Place the engine file inside `~/ros2_ws/src/auv_nano/weights/` directory
-4. Set the `engine_filename` in `detector.py`. The default is `mobilenet.engine`.
-5. Connect the two cameras to USB ports of your Jetson device. Check their port number using `lsusb` command.
-6. Update the port numbers: `FRONT_CAMERA_INDEX` and `DOWN_CAMERA_INDEX` in `config/config.yaml`.  
+3. Create the `~/ros2_ws/src/auv_nano/weights/` directory and place the engine file there.
+   ```sh
+   mkdir -p ~/ros2_ws/src/auv_nano/weights/
+   mv <path_to_your_engine_file> ~/ros2_ws/src/auv_nano/weights/
+   ```
+5. Set the `engine_filename` in `detector.py`. The default is `mobilenet.engine`.
+6. Connect the two cameras to USB ports of your Jetson device. Check their port number using `lsusb` command.
+7. Update the port numbers: `FRONT_CAMERA_INDEX` and `DOWN_CAMERA_INDEX` in `config/config.yaml`.  
 
-7. Build the ROS package.
+8. Build the ROS package.
    ```sh
    cd ~/ros2_ws/
    colcon build --packages-select auv_nano
    ```
-8. Execute the launch file. It will run the detector and planner node.
+9. Execute the launch file. It will run the detector and planner node.
    ```sh
    ros2 launch auv_nano detector_and_planner.launch.py
    ```
