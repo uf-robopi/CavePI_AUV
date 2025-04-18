@@ -31,6 +31,7 @@ The packages are tested on ROS Noetic with Gazebo Classic.
    ```sh
    rosrun cavepi_controller cavepi_teleop_keyboard.py
    ```
+   By operating the keys as mentioned in the teleoperation node, digital twin can be controlled in the Gazebo environment.
 
 
 
