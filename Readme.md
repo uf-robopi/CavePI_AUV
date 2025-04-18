@@ -1,4 +1,4 @@
-This repository contains the design files, operational codes, and digital twin system's packages for the CavePI AUV. Please refer to the following folders for more details.
+This repository contains the design files, operational codes, and digital twin system's packages for the **CavePI AUV**. Please refer to the following folders for more details.
 
 <p align="center">
   <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="49%">
@@ -7,12 +7,12 @@ This repository contains the design files, operational codes, and digital twin s
 
 ## Resources
 
-- [[ArXiv Pre-print]](https://arxiv.org/pdf/2502.05384) [[Project Page]](https://robopi.ece.ufl.edu/cavepi.html)  [[Video Demo]](https://youtu.be/9BPpB1nu98E)
+- **Pointers:** [[ArXiv Pre-print]](https://arxiv.org/pdf/2502.05384) [[Project Page]](https://robopi.ece.ufl.edu/cavepi.html)  [[Video Demo]](https://youtu.be/9BPpB1nu98E)
 - The subdirectories contain the following 
-  - CAD_designs: Contains the SolidWork design files for all the parts used to build CavePI.
-  - auv_nano: Contains the codes for CavePI's onboard Jetson device.
-  - auv_rpi: Contains the codes for CavePI's onboard Raspberry Pi 5 device.
-  - auv_dt: Contains the codes for ROS-Gazebo based digital twin (DT) of CavePI.
+  - **CAD_designs:** Contains the SolidWork design files for all the parts used to build CavePI.
+  - **auv_nano:** Contains the codes for CavePI's onboard Jetson device.
+  - **auv_rpi:** Contains the codes for CavePI's onboard Raspberry Pi 5 device.
+  - **auv_dt:** Contains the codes for ROS-Gazebo based digital twin (DT) of CavePI.
 
 
 
@@ -31,5 +31,4 @@ This repository contains the design files, operational codes, and digital twin s
 
 
 ### Acknowledgements
-This work is supported by the UF research grant #132763 and NSF award #2330416. 
-We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto.
+This research is supported in part by the U.S. National Science Foundation (NSF) grants #$2330416$, #$2024741$, and #$1943205$; and the University of Florida (UF) Research grant #$132763$. We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto. Furthermore, we acknowledge the help from Woodville Karst Plain Project (WKPP), El Centro Investigador del Sistema Acuífero de Quintana Roo A.C. (CINDAQ),  Global Underwater Explorers (GUE), Ricardo Constantino, and Project Baseline over the years in providing access to challenging underwater caves and mentoring us in underwater cave mapping. The authors are also grateful for equipment support by Halcyon Dive Systems, Teledyne FLIR LLC, and KELDAN GmbH lights.
