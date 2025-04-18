@@ -1,3 +1,8 @@
+<!-- =====================================
+Author : Alakrit Gupta
+Email: gupta.alankrit@ufl.edu
+===================================== -->
+
 <?xml version="1.0" ?>
 <robot name="CavePI" xmlns:xacro="http://www.ros.org/wiki/xacro">
 

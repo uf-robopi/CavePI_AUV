@@ -1,3 +1,8 @@
+// =====================================
+// Author : Alakrit Gupta
+// Email: gupta.alankrit@ufl.edu
+// =====================================
+
 #include <urdf/model.h>
 #include "ros/ros.h"
 

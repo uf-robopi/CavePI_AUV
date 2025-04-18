@@ -1,3 +1,8 @@
+<!-- =====================================
+Author : Alakrit Gupta
+Email: gupta.alankrit@ufl.edu
+===================================== -->
+
 <launch>
     <!-- This launch file is responsible for autonomous operation of CavePI in Gazebo for following a hexagonal caveline. -->
 

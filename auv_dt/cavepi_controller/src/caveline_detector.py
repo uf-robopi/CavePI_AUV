@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# =====================================
+# Author : Alakrit Gupta
+# Email: gupta.alankrit@ufl.edu
+# =====================================
+
 import rospy
 from sensor_msgs.msg import Image
 from std_msgs.msg import String, Float32MultiArray, Float32, Int32

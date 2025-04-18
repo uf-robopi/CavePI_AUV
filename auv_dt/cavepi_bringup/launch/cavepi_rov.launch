@@ -1,3 +1,8 @@
+<!-- =====================================
+Author : Alakrit Gupta
+Email: gupta.alankrit@ufl.edu
+===================================== -->
+
 <launch>
     <!-- This launch file is responsible for teleoperation of CavePI in Gazebo. -->
 

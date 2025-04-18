@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# =====================================
+# Author : Alakrit Gupta
+# Email: gupta.alankrit@ufl.edu
+# =====================================
+
 import rospy
 from std_msgs.msg import String, Float32MultiArray, Float32, Int32, Header
 from cavepi_interfaces.msg import CavepiStatus, CavepiInput

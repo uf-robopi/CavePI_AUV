@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# =====================================
+# Author : Alakrit Gupta
+# Email: gupta.alankrit@ufl.edu
+# =====================================
+
 import rospy
 from cavepi_interfaces.msg import CavepiInput
 from geometry_msgs.msg import Wrench, Vector3
