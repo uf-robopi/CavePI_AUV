@@ -2,7 +2,7 @@ This repository contains the design files, operational codes, and digital twin s
 
 <p align="center">
   <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="49%">
-  <img src="../assets/cavepi_demo.png" alt="cavepi_demo" width="49%%">
+  <img src="/assets/cavepi_demo.png" alt="cavepi_demo" width="49%%">
 </p>
 
 ## Resources
