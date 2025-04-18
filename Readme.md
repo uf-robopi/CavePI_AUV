@@ -20,6 +20,9 @@ This repository contains the design files, operational codes, and digital twin s
 
 This work is supported in part by the UF research grant #132763 and NSF award #2330416. 
 We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto.
+Furthermore, we acknowledge the help from Woodville Karst Plain Project (WKPP), El Centro Investigador del Sistema Acuífero de Quintana Roo A.C. (CINDAQ),  
+Global Underwater Explorers (GUE), Ricardo Constantino, and Project Baseline over the years in providing access to challenging underwater caves and mentoring us in underwater cave mapping. 
+The authors are also grateful for equipment support by Halcyon Dive Systems, Teledyne FLIR LLC, and KELDAN GmbH lights.
 
 ## Publication
 If you use this repository in your research, please cite the following paper.
