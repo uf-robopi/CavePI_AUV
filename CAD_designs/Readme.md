@@ -67,15 +67,13 @@ We gratefully acknowledge the following entities for their the open-source CAD d
 
 The CAD assembly and the exploded view of CavePI is shown below:
 <p align="center">
-  <img src="../assets/cavepi_sys_gif.gif" alt="cavepi_sys_gif" width="100%">
+  <img src="../assets/cavepi_sys_gif.gif" alt="cavepi_sys_gif" width="80%">
 </p>
 
 The 3D models of some of the parts in CavePI are shown below.
-<p align="left">
-  <img src="../assets/Dome Connector.png" alt="Dome Connector" width="25%">
+<p align="center">
+  <img src="../assets/CAD Parts.png" alt="CAD Parts" width="80%">
 </p>
 
-<p align="right">
-  <img src="../assets/Dome with Retainer Ring.png" alt="Dome with Retainer Ring" width="25%">
-</p>
+  
 
