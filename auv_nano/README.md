@@ -50,7 +50,7 @@ Other specs (Platform dependent):
 
 ## Example
 
-If a caveline is detected, the '/processed_image' topic should look like the example below. Note that, the AUV is in motion and the blue arrow is indicating the next waypoint. 
+If a caveline is detected, the `/processed_image` topic should look like the example below. Note that, the AUV is in motion and the blue arrow is indicating the next waypoint. 
 <p align="center">
   <img src="../assets/detection_tank.gif" alt="Detection Tank" width="50%">
 </p>
