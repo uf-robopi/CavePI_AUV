@@ -70,3 +70,7 @@ The 3D models of some of the parts in CavePI are shown below.
   <img src="../assets/Dome Connector.png" alt="Dome Connector" width="25%">
 </p>
 
+<p align="right">
+  <img src="../assets/Dome with Retainer Ring.png" alt="Dome with Retainer Ring" width="25%">
+</p>
+
