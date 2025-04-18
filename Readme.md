@@ -1,5 +1,10 @@
 This repository contains the design files, operational codes, and digital twin system's packages for the CavePI AUV. Please refer to the following folders for more details.
 
+
+## Resources
+
+[[ArXiv pre-print]](https://arxiv.org/pdf/2502.05384) [[project page]](https://robopi.ece.ufl.edu/cavepi.html)  [[demo]](https://youtu.be/9BPpB1nu98E)
+
 - CAD_designs: Contains the SolidWork design files for all the parts used to build CavePI.
 - auv_nano: Contains the codes for CavePI's onboard Jetson device.
 - auv_rpi: Contains the codes for CavePI's onboard Raspberry Pi 5 device.
@@ -9,11 +14,6 @@ This repository contains the design files, operational codes, and digital twin s
   <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="49%">
   <img src="/assets/cavepi_sys_gif.gif" alt="cavepi_sys" width="49%">
 </p>
-
-
-## Resources
-
-[[ArXiv pre-print]](https://arxiv.org/pdf/2502.05384) [[project page]](https://robopi.ece.ufl.edu/cavepi.html)  [[demo]](https://youtu.be/9BPpB1nu98E)
 
 
 
