@@ -54,7 +54,7 @@ class CavelineFollowerNode:
         self.status_change_time = time.time()
 
         self.heave = 0.0
-        self.target_depth = 1.4
+        self.target_depth = 1.4 # meters
         self.kp_depth = 4.0
         self.ki_depth = 0.0
         self.kd_depth = 0.0
