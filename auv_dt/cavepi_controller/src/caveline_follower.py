@@ -122,68 +122,7 @@ class CavelineFollowerNode:
 
     def waypoints_callback(self, msg):
         offset_x = msg.data[0]
-        offset_y = msg.data[1]
-        
-        
-
-        # if self.state == "straight":
-        #     if self.is_turning:
-        #         # Confirm straight movement after completing a turn
-        #         self.straight_confirm_count += 1
-        #         if self.straight_confirm_count >= self.STRAIGHT_THRESHOLD:
-        #             self.is_turning = False
-        #             self.straight_confirm_count = 0
-        #             rospy.loginfo("Finished turning, moving straight.")
-        #             surge = 1.0 * self.max_speed
-        #             yaw = 0.0
-        #     else:
-        #         surge = 1.0 * self.max_speed
-        #         if (self.angle * offset_x) >= 0:
-        #             yaw = self.compute_pid_control(self.angle, self.kp_straight, self.ki_straight, self.kd_straight) * self.max_speed
-        #         else:
-        #             yaw = self.slow_speed_factor * 0.04
-            
-        #     self.status_change_time = time.time()
-        #     previous_cmd = [surge, yaw]
-
-        
-        # elif self.state == "turn":
-        #     self.straight_confirm_count = 0
-        #     self.is_turning = True
-
-        #     temp = True
-        #     if temp:
-        #         surge = 0.0
-        #         if abs(self.angle) <= 20:
-        #             # surge = 0.0
-        #             sign = -1
-        #         else:
-        #             # surge = -self.max_speed * 0.05
-        #             sign = 1
-        #         yaw = sign * self.compute_pid_control(self.angle, self.kp_turn, self.ki_turn, self.kd_turn) * 10*(self.max_speed/1)
-        #         temp = not temp
-        #     else:
-        #         pass                
-
-        #     self.status_change_time = time.time()
-        #     previous_cmd = [surge, yaw]
-        #     # if offset_x >= 0:
-        #     #     yaw = -r * 0.04  # Left Turn
-        #     # else:
-        #     #     yaw = r * 0.04  # Right Turn
-
-        # elif self.state == "lost":
-        #     elapsed_time = time.time() - self.status_change_time
-        #     if elapsed_time <= 5:
-        #         surge = previous_cmd[0]
-        #         yaw = previous_cmd[1]
-        #     else:
-        #         surge = 0.0
-        #         yaw = 0.0
-
-        #     previous_cmd = [surge, yaw]
-
-        
+        offset_y = msg.data[1]        
 
 
     # Function to Calculate PID Control
