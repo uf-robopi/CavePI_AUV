@@ -6,7 +6,7 @@ The packages are tested on ROS Noetic with Gazebo Classic.
 
 ## Usage
 
-1. Clone the repo and place the four packages inside `~/catkin_ws/src/` directory.
+1. Clone the repo and place the four packages inside `~/catkin_ws/src/` directory in your local computer.
 2. Download the 3D models of the CavePI links from here: [Dropbox link](https://www.dropbox.com/scl/fo/h16z4oh9wp337o5n7fm5i/AFeJVwF5MsPjYP4ErddTO0g?rlkey=9oo4m484tb7dqusxe6gjbov9v&st=hvr9hmgv&dl=0)
 3. You will find a folder named `meshes` in the link. Download the folder and place it inside `~/catkin_ws/src/cavepi_description/`.
 4. Build and source the ROS workspace.
