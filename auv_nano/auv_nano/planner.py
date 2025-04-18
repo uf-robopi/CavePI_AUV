@@ -198,7 +198,7 @@ class Planner(Node):
 
             # Send control commands to RPi over UDP in case ROS2 connection is lost
             print("[INFO] Sending control commands")
-            send_udp_data(self.sock, "pose", {"direction": direction}, self.UDP_IP, self.UDP_PORT)
+            send_udp_data(self.sock, "state", {"direction": direction}, self.UDP_IP, self.UDP_PORT)
             send_udp_data(self.sock, "waypoints", {"x": float(next_point[0]), "y": float(next_point[1])}, self.UDP_IP, self.UDP_PORT)
             send_udp_data(self.sock, "angle", {"angle": float(next_heading_deg)}, self.UDP_IP, self.UDP_PORT)
 
