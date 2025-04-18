@@ -8,7 +8,7 @@ import roslib; roslib.load_manifest('teleop_twist_keyboard')
 import rospy
 
 #from geometry_msgs.msg import Twist
-from nemogator_interfaces.msg import CavepiInput
+from cavepi_interfaces.msg import CavepiInput
 
 import sys, select, termios, tty
 
