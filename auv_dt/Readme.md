@@ -34,4 +34,10 @@ The packages are tested on ROS Noetic with Gazebo Classic.
    By operating the keys as mentioned in the teleoperation node, digital twin can be controlled in the Gazebo environment.
 
 
+## Example
+
+The autonomous caveline following capability of the CavePI's digital twin is shown below. A red color caveline is arranged in a hexagonal shape at the bottom and CavePI is following it. Please note that CavePI's downward-facing camera view is also presented at the top-left corner of the gif below.
+<p align="center">
+  <img src="../assets/cavepi_dt_gif.gif" alt="cavepi_dt_gif" width="80%">
+</p>
 
