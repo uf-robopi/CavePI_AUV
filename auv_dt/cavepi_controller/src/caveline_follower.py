@@ -38,9 +38,9 @@ class CavelineFollowerNode:
         self.STRAIGHT_THRESHOLD = 5  # Threshold for confirming straight direction
 
         # PID Controller Parameters
-        self.kp_straight = 7.0 # 10
-        self.ki_straight = 0.0 # 0
-        self.kd_straight = 1.0 # 0.12
+        self.kp_straight = 7.0
+        self.ki_straight = 0.0
+        self.kd_straight = 1.0
         self.error_array = []
         self.dt_array = []
         self.previous_error = 0.0
