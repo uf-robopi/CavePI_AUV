@@ -58,9 +58,6 @@ class CavelineFollowerNode:
         self.kp_depth = 4.0
         self.ki_depth = 0.0
         self.kd_depth = 0.0
-        self.depth_log_file = open("/home/alankrit/depth_data_log.txt", "a")
-        self.start_time = time.time()
-        rospy.on_shutdown(self.depth_log_file.close)
 
     def state_callback(self, msg):
         self.state = msg.data
@@ -71,10 +68,6 @@ class CavelineFollowerNode:
         depth_out = Float32()
         depth_out.data = depth
         self.depth_pub.publish(depth_out)
-
-        log_time = time.time() - self.start_time  # time in seconds since node start
-        self.depth_log_file.write(f"{log_time}, {depth}\n")
-        self.depth_log_file.flush()
 
         depth_error = self.depth_to_hold - depth
         self.heave = self.compute_pid_control(depth_error, self.kp_depth, self.ki_depth, self.kd_depth) * self.max_speed
