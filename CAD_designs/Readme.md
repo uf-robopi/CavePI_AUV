@@ -63,3 +63,10 @@ We gratefully acknowledge the following entities for their the open-source CAD d
 | Pixhawk               | [GrabCAD](https://grabcad.com/library/pixhawk-2-4-8-v1-flight-controller-1)   |
 | Fish-Eye Camera       | [ArduCam](https://www.arducam.com/arducam-1080p-low-light-wdr-ultra-wide-angle-usb-camera-module-for-computer-2mp-cmos-imx291-160-degree-fisheye-mini-uvc-usb2-0-spy-webcam-board-with-microphone-3-3ft-cable-for-windows-linux-mac-os.html)          |
 
+## Example
+
+The 3D models of some of the parts in CavePI are shown below.
+<p align="left">
+  <img src="../assets/detection_tank.gif" alt="Detection Tank" width="50%">
+</p>
+
