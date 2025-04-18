@@ -54,7 +54,7 @@ class CavelineFollowerNode:
         self.status_change_time = time.time()
 
         self.heave = 0.0
-        self.depth_to_hold = 1.4
+        self.target_depth = 1.4
         self.kp_depth = 4.0
         self.ki_depth = 0.0
         self.kd_depth = 0.0
@@ -69,7 +69,7 @@ class CavelineFollowerNode:
         depth_out.data = depth
         self.depth_pub.publish(depth_out)
 
-        depth_error = self.depth_to_hold - depth
+        depth_error = self.target_depth - depth
         self.heave = self.compute_pid_control(depth_error, self.kp_depth, self.ki_depth, self.kd_depth) * self.max_speed
 
 
