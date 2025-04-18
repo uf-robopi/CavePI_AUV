@@ -3,7 +3,7 @@
 import rospy
 from sensor_msgs.msg import LaserScan
 from std_msgs.msg import String, Float32MultiArray, Float32
-from nemogator_interfaces.msg import CavepiInput
+from cavepi_interfaces.msg import CavepiInput
 import time
 import numpy as np
 
