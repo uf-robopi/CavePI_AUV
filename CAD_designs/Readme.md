@@ -67,6 +67,6 @@ We gratefully acknowledge the following entities for their the open-source CAD d
 
 The 3D models of some of the parts in CavePI are shown below.
 <p align="left">
-  <img src="../assets/detection_tank.gif" alt="Detection Tank" width="50%">
+  <img src="../assets/Dome Connector.png" alt="Dome Connector" width="50%">
 </p>
 
