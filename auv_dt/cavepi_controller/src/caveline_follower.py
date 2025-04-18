@@ -47,7 +47,7 @@ class CavelineFollowerNode:
         self.pid_last_time = None
         self.error_integral = 0.0
         self.count_integrated_errors = 5
-        self.max_speed = 0.05 # 10% of the max speed
+        self.max_speed = 0.05 # 5% of the max speed
         self.slow_speed_factor = 0.3
         self.kp_turn = 1000.0
         self.ki_turn = 0.0
