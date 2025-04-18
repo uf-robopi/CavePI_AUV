@@ -67,7 +67,7 @@ We gratefully acknowledge the following entities for their the open-source CAD d
 
 The CAD assembly and the exploded view of CavePI is shown below:
 <p align="center">
-  <img src="../assets/cavepi_sys_gif.gif" alt="cavepi_sys_gif" width="50%">
+  <img src="../assets/cavepi_sys_gif.gif" alt="cavepi_sys_gif" width="100%">
 </p>
 
 The 3D models of some of the parts in CavePI are shown below.
