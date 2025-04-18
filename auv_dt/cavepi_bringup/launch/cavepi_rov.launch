@@ -5,8 +5,8 @@
     <arg name="world_name" default="underwater.world"/>
     <arg name="enable_ros_network" default="true" />
 
-    <!--Creating an argument for the NemoGator URDF Model -->
-    <arg name="model" default="$(find nemogator_description)/urdf/cavepi.urdf.xacro"/>
+    <!--Creating an argument for the CavePI URDF Model -->
+    <arg name="model" default="$(find cavepi_description)/urdf/cavepi.urdf.xacro"/>
 
     <!-- Setting use_sim_time flag -->
     <param name="/use_sim_time" value="$(arg use_sim_time)"/>
@@ -17,7 +17,7 @@
 
     <!-- Launching the 'gzclient' and 'gzserver' Nodes from the 'gazebo_ros' Package -->
     <node name="gazebo" pkg="gazebo_ros" type="gzserver" respawn="false" output="screen"
-        args="-u -e ode $(find nemogator_description)/worlds/$(arg world_name)" />
+        args="-u -e ode $(find cavepi_description)/worlds/$(arg world_name)" />
 
     <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" args="--verbose"/>
 
@@ -33,12 +33,12 @@
             args="-x 0 -y 2.598 -z 1.0 -urdf -model CavePI -param robot_description -R 3.1416 -Y 0" />
 
     <!-- Launching the controller node for the movement of the robot in Gazebo -->
-    <node pkg="nemogator_controller" type="cavepi_control_node.py" name="cavepi_control_node" />
+    <node pkg="cavepi_controller" type="cavepi_control_node.py" name="cavepi_control_node" />
 
     <!-- Please launch the 'cavepi_teleop_keyboard' node to start the teleoperation of the robot in Gazebo -->
 
-    <!-- <node pkg="nemogator_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher" /> -->
-    <node pkg="nemogator_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher">
+    <!-- <node pkg="cavepi_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher" /> -->
+    <node pkg="cavepi_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher">
         <param name="use_sim_time" value="true"/>
         <rosparam>
             /wait_for_clock: true
