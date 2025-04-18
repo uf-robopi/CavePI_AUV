@@ -9,6 +9,7 @@ import time
 from datetime import datetime
 import rclpy
 import yaml
+import socket
 from rclpy.node import Node
 from std_msgs.msg import Int32
 from cv_bridge import CvBridge
@@ -16,7 +17,7 @@ from sensor_msgs.msg import Image
 from std_msgs.msg import Float32MultiArray
 from ament_index_python.packages import get_package_share_directory
 from .perception_util import PrepareEngine, InferenceOnFrame
-from .comm_util import initialize_camera, reinitialize_camera
+from .comm_util import initialize_camera, reinitialize_camera, send_udp_data
 
 class Detector(Node):
     """
@@ -35,6 +36,11 @@ class Detector(Node):
         config_file = os.path.join(package_share, 'config', 'config.yaml')
         with open(config_file, 'r') as f:
             config = yaml.safe_load(f)
+
+        self.UDP_IP = config['UDP_IP']
+        self.UDP_PORT = config['UDP_PORT']
+        self.PUBLISH_RATE = config['PUBLISH_RATE']  # 5 Hz
+        self.SLEEP_TIME = 1.0 / self.PUBLISH_RATE
 
         # Create publishers
         self.qr_pub = self.create_publisher(Int32, '/qr_info', 10)
@@ -73,6 +79,8 @@ class Detector(Node):
         # Initialize QR code detector
         self.qr_detector = cv2.QRCodeDetector()
 
+        # Create UDP socket (alternate comm channel for ROS2)
+        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
         # Set processing rate (10 Hz) using a timer
         self.timer = self.create_timer(1.0 / 10.0, self.timer_callback)
@@ -125,6 +133,9 @@ class Detector(Node):
             qr_msg = Int32()
             qr_msg.data = qr_value
             self.qr_pub.publish(qr_msg)
+
+            # Also send qr info over UDP
+            send_udp_data(self.sock, "qr_info", {"qr_data": qr_value}, self.UDP_IP, self.UDP_PORT)
 
             # --- Process downward camera for line detection ---
 
