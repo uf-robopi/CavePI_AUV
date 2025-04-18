@@ -1,8 +1,8 @@
 This repository contains the design files, operational codes, and digital twin system's packages for the **CavePI AUV**. Please refer to the following folders for more details.
 
 <p align="center">
-  <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="49%">
-  <img src="/assets/cavepi_demo.png" alt="cavepi_demo" width="49%%">
+  <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="55%">
+  <img src="/assets/cavepi_demo.png" alt="cavepi_demo" width="44%%">
 </p>
 
 ## Resources
