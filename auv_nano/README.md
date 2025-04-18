@@ -48,3 +48,10 @@ Other specs (Platform dependent):
    If a line is detected from the downward camera, the planner will send control commands to Raspberry Pi. Please refer to the `auv_rpi` folder to setup the Raspberry Pi codes.
 
 
+## Example
+
+If a caveline is detected, the '/processed_image' topic should look like the example below. Note that, the AUV is in motion and the blue arrow is indicating the next waypoint. 
+<p align="center">
+  <img src="../assets/detection_tank.gif" alt="Detection Tank" width="50%">
+</p>
+
