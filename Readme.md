@@ -1,36 +1,36 @@
-# Official GitHub Repository for CavePI AUV
-
-This repository contains the design files, operational codes, and digital twin system of CavePI AUV. Please refer to the following folders for more details.
+This repository contains the design files, operational codes, and digital twin system's packages for the CavePI AUV. Please refer to the following folders for more details.
 
 - CAD_designs: Contains the SolidWork design files for all the parts used to build CavePI.
 - auv_nano: Contains the codes for CavePI's onboard Jetson device.
 - auv_rpi: Contains the codes for CavePI's onboard Raspberry Pi 5 device.
 - auv_dt: Contains the codes for ROS-Gazebo based digital twin (DT) of CavePI.
 
-#### TODO
-- ~~update link to CAD files~~
-- ~~Add rpi codes~~
-- ~~Add dt codes~~
+<p align="center">
+  <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="49%">
+  <img src="/assets/cavepi_sys_gif.gif" alt="cavepi_sys" width="49%">
+</p>
+
 
 ## Resources
 
 [[ArXiv pre-print]](https://arxiv.org/pdf/2502.05384) [[project page]](https://robopi.ece.ufl.edu/cavepi.html)  [[demo]](https://youtu.be/9BPpB1nu98E)
 
-## Acknowledgements
 
-This work is supported in part by the UF research grant #132763 and NSF award #2330416. 
-We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto.
-Furthermore, we acknowledge the help from Woodville Karst Plain Project (WKPP), El Centro Investigador del Sistema Acuífero de Quintana Roo A.C. (CINDAQ), 
-Global Underwater Explorers (GUE), Ricardo Constantino, and Project Baseline over the years in providing access to challenging underwater caves and mentoring us in underwater cave mapping. 
-The authors are also grateful for equipment support by Halcyon Dive Systems, Teledyne FLIR LLC, and KELDAN GmbH lights.
 
-## Publication
-If you use this repository in your research, please cite the following paper.
+
+### License and Bibliography 
+- Please check the LICENSE file 
+- Citation entry:
 ```
 @article{gupta2025demonstrating,
   title={Demonstrating CavePI: Autonomous Exploration of Underwater Caves by Semantic Guidance},
   author={Gupta, Alankrit and Abdullah, Adnan and Li, Xianyao and Ramesh, Vaishnav and Rekleitis, Ioannis and Islam, Md Jahidul},
-  journal={arXiv preprint arXiv:2502.05384},
+  journal={ArXiv preprint arXiv:2502.05384},
   year={2025}
 }
 ```
+
+
+### Acknowledgements
+This work is supported by the UF research grant #132763 and NSF award #2330416. 
+We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto.
