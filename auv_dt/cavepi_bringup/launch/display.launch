@@ -1,9 +1,9 @@
 <launch>
 <!-- This launch file is responsible for viewing CavePI model within RViz. -->
 
-  <arg name="model" default="$(find nemogator_description)/urdf/cavepi.urdf.xacro"/>
+  <arg name="model" default="$(find cavepi_description)/urdf/cavepi.urdf.xacro"/>
   <arg name="gui" default="true" />
-  <arg name="rvizconfig" default="$(find nemogator_description)/rviz/rviz_config.rviz" />
+  <arg name="rvizconfig" default="$(find cavepi_description)/rviz/rviz_config.rviz" />
 
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
   <!--<param name="use_gui" value="$(arg gui)"/>-->
