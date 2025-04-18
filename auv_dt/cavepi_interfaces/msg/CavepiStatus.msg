@@ -1,5 +1,5 @@
 std_msgs/Header header
-string pose
+string state
 int32 detected_contours
 float32 angle
 std_msgs/Float32MultiArray control_cmd
