@@ -34,7 +34,7 @@
     <link name="main_body_link_cavepi">
         <visual>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/main_body_link_cavepi.STL" 
+                <mesh filename="package://cavepi_description/meshes/main_body_link_cavepi.STL" 
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
@@ -43,7 +43,7 @@
 
         <collision>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/main_body_link_cavepi.STL" 
+                <mesh filename="package://cavepi_description/meshes/main_body_link_cavepi.STL" 
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
@@ -70,7 +70,7 @@
     <link name="front_right_thruster_link_cavepi">
         <visual>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/front_right_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/front_right_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -79,7 +79,7 @@
  
         <collision>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/front_right_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/front_right_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -107,7 +107,7 @@
     <link name="front_left_thruster_link_cavepi">
         <visual>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/front_left_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/front_left_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -116,7 +116,7 @@
  
         <collision>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/front_left_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/front_left_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />
@@ -144,7 +144,7 @@
     <link name="rear_right_thruster_link_cavepi">
         <visual>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/rear_right_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/rear_right_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
@@ -153,7 +153,7 @@
  
         <collision>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/rear_right_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/rear_right_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 ${pi/2} 0" />
@@ -181,7 +181,7 @@
     <link name="rear_left_thruster_link_cavepi">
         <visual>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/rear_left_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/rear_left_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 ${-pi/2} 0" />
@@ -190,7 +190,7 @@
  
         <collision>
             <geometry>
-                <mesh filename="package://nemogator_description/meshes/rear_left_thruster_link_cavepi.STL"
+                <mesh filename="package://cavepi_description/meshes/rear_left_thruster_link_cavepi.STL"
                       scale="${scale_size} ${scale_size} ${scale_size}" />
             </geometry>
             <origin xyz="0 0 0" rpy="0 ${-pi/2} 0" />
