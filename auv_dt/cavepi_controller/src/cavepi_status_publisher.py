@@ -4,7 +4,7 @@ import rospy
 from std_msgs.msg import String, Float32MultiArray, Float32, Int32, Header
 from cavepi_interfaces.msg import CavepiStatus, CavepiInput
 
-class CavelineDetectorNode:
+class CavepiStatusNode:
     def __init__(self):
         rospy.init_node('caveline_status_publisher')
 
@@ -72,7 +72,7 @@ class CavelineDetectorNode:
 
 if __name__ == '__main__':
     try:
-        node = CavelineDetectorNode()
+        node = CavepiStatusNode()
         rospy.spin()
     except rospy.ROSInterruptException:
         pass
