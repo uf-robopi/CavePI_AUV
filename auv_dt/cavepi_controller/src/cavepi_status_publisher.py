@@ -2,7 +2,7 @@
 
 import rospy
 from std_msgs.msg import String, Float32MultiArray, Float32, Int32, Header
-from nemogator_interfaces.msg import CavepiStatus, CavepiInput
+from cavepi_interfaces.msg import CavepiStatus, CavepiInput
 
 class CavelineDetectorNode:
     def __init__(self):
