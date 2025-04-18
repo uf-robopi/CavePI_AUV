@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from nemogator_interfaces.msg import CavepiInput
+from cavepi_interfaces.msg import CavepiInput
 from geometry_msgs.msg import Wrench, Vector3
 from std_msgs.msg import Float32
 from gazebo_msgs.msg import LinkStates
