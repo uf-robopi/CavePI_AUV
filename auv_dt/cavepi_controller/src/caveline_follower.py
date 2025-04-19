@@ -5,8 +5,9 @@
 # Email: gupta.alankrit@ufl.edu
 # =====================================
 
+#!/usr/bin/env python3
+
 import rospy
-from sensor_msgs.msg import LaserScan
 from std_msgs.msg import String, Float32MultiArray, Float32
 from cavepi_interfaces.msg import CavepiInput
 import time
@@ -24,8 +25,8 @@ class CavelineFollowerNode:
             name="/waypoints_data", data_class=Float32MultiArray, callback=self.waypoints_callback)
         self.angle_sub = rospy.Subscriber(
             name="/angle", data_class=Float32, callback=self.angle_callback)
-        self.depth_sub = rospy.Subscriber(
-            name="/raw_depth_data", data_class=LaserScan, callback=self.depth_callback)
+        self.depth_control_sub = rospy.Subscriber(
+            name="/heave_control_input", data_class=Float32, callback=self.depth_control_callback)
         
         # Publishers
         self.control_input_pub = rospy.Publisher(
@@ -43,39 +44,35 @@ class CavelineFollowerNode:
         self.STRAIGHT_THRESHOLD = 5  # Threshold for confirming straight direction
 
         # PID Controller Parameters
-        self.kp_straight = 7.0
-        self.ki_straight = 0.0
-        self.kd_straight = 1.0
+        self.kp_straight = 7.0 # 10
+        self.ki_straight = 0.0 # 0
+        self.kd_straight = 1.0 # 0.12
         self.error_array = []
         self.dt_array = []
         self.previous_error = 0.0
         self.pid_last_time = None
         self.error_integral = 0.0
         self.count_integrated_errors = 5
-        self.max_speed = 0.05 # 5% of the max speed
+        self.max_speed = 0.05 # 10% of the max speed
+        self.slow_speed_factor = 0.3
         self.kp_turn = 1000.0
         self.ki_turn = 0.0
         self.kd_turn = 0.0
         self.status_change_time = time.time()
 
         self.heave = 0.0
-        self.target_depth = 1.4 # meters
+        self.depth_to_hold = 1.4
         self.kp_depth = 4.0
         self.ki_depth = 0.0
         self.kd_depth = 0.0
+
 
     def state_callback(self, msg):
         self.state = msg.data
 
 
-    def depth_callback(self, msg):
-        depth = np.mean(msg.ranges)
-        depth_out = Float32()
-        depth_out.data = depth
-        self.depth_pub.publish(depth_out)
-
-        depth_error = self.target_depth - depth
-        self.heave = self.compute_pid_control(depth_error, self.kp_depth, self.ki_depth, self.kd_depth) * self.max_speed
+    def depth_control_callback(self, msg):
+        self.heave = msg.data * self.max_speed
 
 
     def angle_callback(self, msg):
@@ -89,7 +86,6 @@ class CavelineFollowerNode:
         if self.state == "straight":
             
             yaw = self.compute_pid_control(error, self.kp_straight, self.ki_straight, self.kd_straight) * self.max_speed
-            # surge = np.sqrt((self.max_speed**2) - (yaw**2))
             surge = self.max_speed - yaw
             print('state is straight!')
             if self.angle >= 0:
@@ -140,7 +136,6 @@ class CavelineFollowerNode:
         error_derivative = (error - self.previous_error) / dt
         control_signal = (kp * error) + (ki * self.error_integral) + (kd * error_derivative)
         control_signal = np.clip(control_signal, -1.0, 1.0)
-        
         self.previous_error = error
 
         return control_signal
