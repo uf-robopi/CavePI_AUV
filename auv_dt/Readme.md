@@ -33,6 +33,10 @@ The packages are tested on ROS Noetic with Gazebo Classic.
    ```
    By operating the keys as mentioned in the teleoperation node, digital twin can be controlled in the Gazebo environment.
 
+### Acknowledgements
+
+We gratefully acknowledge the [LoCO-AUV](https://github.com/loco-auv) for their open-source digital twin simulator.
+
 
 ## Example
 
