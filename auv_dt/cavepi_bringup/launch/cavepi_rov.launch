@@ -1,8 +1,3 @@
-<!-- =====================================
-Author : Alakrit Gupta
-Email: gupta.alankrit@ufl.edu
-===================================== -->
-
 <launch>
     <!-- This launch file is responsible for teleoperation of CavePI in Gazebo. -->
 
@@ -37,8 +32,11 @@ Email: gupta.alankrit@ufl.edu
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen"
             args="-x 0 -y 2.598 -z 1.0 -urdf -model CavePI -param robot_description -R 3.1416 -Y 0" />
 
-    <!-- Launching the controller node for the movement of the robot in Gazebo -->
+    <!-- Launching the movement controller node of the robot in Gazebo -->
     <node pkg="cavepi_controller" type="cavepi_control_node.py" name="cavepi_control_node" />
+
+    <!-- Launching the depth controller node of the robot in Gazebo -->
+    <node pkg="cavepi_controller" type="depth_control_node.py" name="depth_control_node" />
 
     <!-- Please launch the 'cavepi_teleop_keyboard' node to start the teleoperation of the robot in Gazebo -->
 
