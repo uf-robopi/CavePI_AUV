@@ -32,10 +32,6 @@ class AutopilotNode(Node):
         # QR Data Subscriber
         self.qr_subscriber = self.create_subscription(
             msg_type=Int32, topic='/qr_data', callback=self.callback_qr, qos_profile=10)
-               
-        # Lights Information Subscriber
-        self.light_subscriber = self.create_subscription(
-            msg_type=Int32, topic='/light_info', callback=self.callback_lights, qos_profile=10)
        
         # Depth-Hold State Information Subscriber
         self.depth_hold_subscriber = self.create_subscription(
