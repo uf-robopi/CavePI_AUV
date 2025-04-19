@@ -141,9 +141,6 @@ class AutopilotNode(Node):
         previous_depth_hold = self.is_depth_hold_started
         previous_qr = self.qr_info
         self.qr_info = msg.data
-        if time.time() - self.boot_time > 60:
-            self.qr_info = self.disarm_pixhawk_qr
-        self.get_logger().info(f"Received QR Code: {self.qr_info}")
        
         if self.qr_info != previous_qr:
             if self.qr_info == self.arm_pixhawk_qr:
