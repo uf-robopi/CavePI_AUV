@@ -5,8 +5,6 @@
 # Email: gupta.alankrit@ufl.edu
 # =====================================
 
-#!/usr/bin/env python3
-
 import rospy
 from std_msgs.msg import String, Float32MultiArray, Float32
 from cavepi_interfaces.msg import CavepiInput
