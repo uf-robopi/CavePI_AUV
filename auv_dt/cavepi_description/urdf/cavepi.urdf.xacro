@@ -56,7 +56,7 @@ Email: gupta.alankrit@ufl.edu
 
         <inertial>
             <origin xyz="${scale_size*-0.8e-3} 0 ${scale_size*-4.55e-3}" rpy="0 0 0" />
-            <mass value="8.714" />
+            <mass value="8.6" />
             <inertia ixx="41763721.74e-9" ixy="76.64e-9" ixz="-1071029.52e-9"
                      iyy="99391057.27e-9" iyz="603.74e-9"
                      izz="101413261.83e-9" />
