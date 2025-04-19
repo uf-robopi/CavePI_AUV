@@ -31,4 +31,4 @@ This repository contains the design files, operational codes, and digital twin s
 
 
 ### Acknowledgements
-This research is supported in part by the U.S. National Science Foundation (NSF) grants #2330416, #2024741, and #1943205; and the University of Florida (UF) Research grant #$132763$. We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto. 
+This research is supported in part by the U.S. National Science Foundation (NSF) grants #2330416, #2024741, and #1943205; and the University of Florida (UF) Research grant #132763. We are thankful to Dr. Nare Karapetyan, Ruo Chen, and David Blow for facilitating our field trials at Ginnie open-water springs and Blue Grotto. 
