@@ -18,8 +18,8 @@ class AutopilotUtilNode(Node):
 
         # SUBSCRIBERS
         # Pixhawk Arm/Disarm Information Subscriber
-        self.Pixhawk_arm_subscriber = self. create_subscription(
-            msg_type=Bool, topic='/Pixhawk_arm_state', callback=self.callback_Pixhawk_arm, qos_profile=10)
+        self.pixhawk_arm_subscriber = self. create_subscription(
+            msg_type=Bool, topic='/pixhawk_arm_state', callback=self.callback_pixhawk_arm, qos_profile=10)
  
         # caveline Status Data Subscriber
         self.motion_direction_subscriber = self.create_subscription(
@@ -35,7 +35,7 @@ class AutopilotUtilNode(Node):
             msg_type=Int32, topic='/tracking_signal', qos_profile=10)
 
         # Parameter Initialization
-        self.is_Pixhawk_armed = False
+        self.is_pixhawk_armed = False
         self.current_motion_state = "lost"
         self.tracking = 0
         self.is_depth_hold_started = False
@@ -43,11 +43,11 @@ class AutopilotUtilNode(Node):
         self.status_change_instant = self.get_clock().now()        
         
  
-    def callback_Pixhawk_arm(self, msg):
+    def callback_pixhawk_arm(self, msg):
         '''
         Callback Function to Know if the Pixhawk is Armed
         '''
-        self.is_Pixhawk_armed = msg.data
+        self.is_pixhawk_armed = msg.data
  
     
     def callback_motion_direction(self, msg):
@@ -65,7 +65,7 @@ class AutopilotUtilNode(Node):
         3: wait
         '''        
 
-        if not self.is_Pixhawk_armed: # If Pixhawk is disarmed.
+        if not self.is_pixhawk_armed: # If Pixhawk is disarmed.
             self.status_change_instant = self.get_clock().now()
 
         else: # If Pixhawk is armed.
