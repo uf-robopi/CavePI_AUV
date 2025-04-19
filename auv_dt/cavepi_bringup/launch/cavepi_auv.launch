@@ -41,10 +41,14 @@ Email: gupta.alankrit@ufl.edu
     <!-- Launching the controller node for the movement of the robot in Gazebo -->
     <node pkg="cavepi_controller" type="cavepi_control_node.py" name="cavepi_control_node" />
 
-    <!-- Launching the controller node for the movement of the robot in Gazebo -->
+    <!-- Launching the movement controller node of the robot in Gazebo -->
     <node pkg="cavepi_controller" type="caveline_detector.py" name="caveline_detector" />
 
+    <!-- Launching the caveline follower node of the robot in Gazebo -->
     <node pkg="cavepi_controller" type="caveline_follower.py" name="caveline_follower" />
+
+    <!-- Launching the depth controller node of the robot in Gazebo -->
+    <node pkg="cavepi_controller" type="depth_control_node.py" name="depth_control_node" />
 
     <!-- <node pkg="cavepi_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher" /> -->
     <node pkg="cavepi_controller" type="cavepi_status_publisher.py" name="cavepi_status_publisher">
