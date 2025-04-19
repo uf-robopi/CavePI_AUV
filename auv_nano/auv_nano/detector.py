@@ -80,7 +80,7 @@ class Detector(Node):
         self.qr_detector = cv2.QRCodeDetector()
 
         # Create UDP socket (alternate comm channel for ROS2)
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
         # Set processing rate (10 Hz) using a timer
         self.timer = self.create_timer(1.0 / 10.0, self.timer_callback)
@@ -135,7 +135,7 @@ class Detector(Node):
             self.qr_pub.publish(qr_msg)
 
             # Also send qr info over UDP
-            send_udp_data(self.sock, "qr_info", {"qr_data": qr_value}, self.UDP_IP, self.UDP_PORT)
+            # send_udp_data(self.sock, "qr_info", {"qr_data": qr_value}, self.UDP_IP, self.UDP_PORT)
 
             # --- Process downward camera for line detection ---
 

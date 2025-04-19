@@ -49,6 +49,7 @@ class Planner(Node):
         # Subscribe to map and detected lines
         self.lines_sub = self.create_subscription(Float32MultiArray, '/detected_lines', self.lines_callback, 10)
         self.map_sub = self.create_subscription(Image, '/map', self.map_callback, 10)
+        self.qr_sub = self.create_subscription(Int32, '/qr_info', self.qr_callback, 10)
 
 
         # Create publishers for data topics
@@ -93,6 +94,14 @@ class Planner(Node):
             self.get_logger().error(f"Failed to convert map image: {e}")
             self.map_image = None
 
+    def qr_callback(self, msg):
+        """
+        Store the QR info.
+        """
+        try:
+            self.qr_value = msg.data
+        except Exception as e:
+            self.qr_value = -1
 
     def timer_callback(self):
         """
@@ -201,6 +210,7 @@ class Planner(Node):
             send_udp_data(self.sock, "state", {"direction": direction}, self.UDP_IP, self.UDP_PORT)
             send_udp_data(self.sock, "waypoints", {"x": float(next_point[0]), "y": float(next_point[1])}, self.UDP_IP, self.UDP_PORT)
             send_udp_data(self.sock, "angle", {"angle": float(next_heading_deg)}, self.UDP_IP, self.UDP_PORT)
+            send_udp_data(self.sock, "qr_info", {"qr_data": self.qr_value}, self.UDP_IP, self.UDP_PORT)
 
             # Sleep to maintain ~5Hz
             time.sleep(self.SLEEP_TIME)
