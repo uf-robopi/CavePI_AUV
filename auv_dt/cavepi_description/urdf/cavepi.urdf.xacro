@@ -1,9 +1,10 @@
+<?xml version="1.0" ?>
+
 <!-- =====================================
 Author : Alakrit Gupta
 Email: gupta.alankrit@ufl.edu
 ===================================== -->
 
-<?xml version="1.0" ?>
 <robot name="CavePI" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:property name="tube_od" value="0.1651" />
