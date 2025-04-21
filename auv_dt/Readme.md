@@ -25,7 +25,7 @@ The packages are tested on ROS Noetic with Gazebo Classic.
    ```
 8. For teleopration, run a ROS launch file:
    ```sh
-   roslaunch cavepi_bringup cavepi_auv.launch
+   roslaunch cavepi_bringup cavepi_rov.launch
    ```
    And, also run a teleoperation node:
    ```sh
