@@ -48,11 +48,6 @@ class CavepiControlNode:
 
         self.max_forward_force = 51.485 # Newtons
         self.max_reverse_force = 40.207 # Newtons
-
-
-        self.log_file_path = os.path.expanduser("/home/alankrit/Desktop/deviation_error_log.txt")
-        self.log_file = open(self.log_file_path, "a")
-        self.log_file.write("Timestamp,Deviation_Error\n")
         
 
     def input_callback(self, msg):
@@ -129,10 +124,6 @@ class CavepiControlNode:
         deviation_error.data = msg.pose[base_i].position.y
         timestamp = rospy.get_time()
         self.deviation_error_publisher.publish(deviation_error)
-
-        log_entry = f"{timestamp},{deviation_error.data}\n"
-        self.log_file.write(log_entry)
-        self.log_file.flush()
 
         
         # Calculation of The Final Thrust on The Front Right Thruster
