@@ -215,9 +215,12 @@ class CavepiControlNode:
 
     def shutdown_hook(self):
         """Close the file when the node shuts down."""
-        if self.log_file:
-            self.log_file.close()
-            rospy.loginfo("Deviation error log file closed.")
+        try:
+            if self.log_file:
+                self.log_file.close()
+                rospy.loginfo("Deviation error log file closed.")
+        except:
+            pass
 
 
 
