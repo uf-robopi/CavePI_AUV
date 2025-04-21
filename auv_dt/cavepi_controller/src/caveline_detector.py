@@ -52,7 +52,7 @@ class CavelineDetectorNode:
 
         # Convert to grayscale, blur, edge detection
         gray = cv2.cvtColor(frame_down, cv2.COLOR_BGR2GRAY)
-        blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+        blurred = cv2.GaussianBlur(frame_down, (5, 5), 0)
         edges = cv2.Canny(blurred, 50, 150)
 
         # Find contours in the edge-detected image
