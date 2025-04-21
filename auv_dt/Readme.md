@@ -4,6 +4,14 @@
 
 The packages are tested on ROS Noetic with Gazebo Classic.
 
+## Additional Packages Installation
+1. Install the `mavros` and `teleop-twist-keyboard` packages for the respective ROS version.
+    ```sh
+   sudo apt install ros-noetic-mavros ros-noetic-mavros-extras
+   sudo apt install ros-noetic-teleop-twist-keyboard
+   ```
+   In case if you are using any other version of ROS than Noetic, please replace `noetic` with the correct version of ROS.
+   
 ## Usage
 
 1. Clone the repo and place the four packages inside `~/catkin_ws/src/` directory in your local computer.
@@ -27,7 +35,7 @@ The packages are tested on ROS Noetic with Gazebo Classic.
    ```sh
    roslaunch cavepi_bringup cavepi_rov.launch
    ```
-   And, also run a teleoperation node:
+   And, also run a teleoperation node in another terminal window:
    ```sh
    rosrun cavepi_controller cavepi_teleop_keyboard.py
    ```
