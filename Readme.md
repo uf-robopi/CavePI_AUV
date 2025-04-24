@@ -1,4 +1,4 @@
-This repository contains the design files, operational codes, and digital twin system's packages for the **CavePI AUV**. Please refer to the following folders for more details.
+This repository contains the design files, operational codes, and digital twin system's packages for the **CavePI AUV** (Autonomous Underwater Vehicle) from the RoboPI group at ECE, UF. The paper is accepted for publication at the Robotics: Science and Systems (RSS-2025). 
 
 <p align="center">
   <img src="/assets/CavePI_Ginnie.gif" alt="cavepi_field" width="55%">
@@ -21,10 +21,10 @@ This repository contains the design files, operational codes, and digital twin s
 - Please check the LICENSE file 
 - Citation entry:
 	```
-  @article{gupta2025demonstrating,
+  @inproceedings{gupta2025demonstrating,
     title={Demonstrating CavePI: Autonomous Exploration of Underwater Caves by Semantic Guidance},
     author={Gupta, Alankrit and Abdullah, Adnan and Li, Xianyao and Ramesh, Vaishnav and Rekleitis, Ioannis and Islam, Md Jahidul},
-    journal={ArXiv preprint arXiv:2502.05384},
+    booktitle={Robotics: Science and Systems (RSS)},
     year={2025}
   }
 	```
