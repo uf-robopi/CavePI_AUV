@@ -12,6 +12,7 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/launch', glob(os.path.join('launch', '*.py'))),
         ('share/' + package_name + '/config', ['config/config.yaml']),
         ('share/' + package_name + '/weights', glob(os.path.join('weights', '*'))),
     ],
