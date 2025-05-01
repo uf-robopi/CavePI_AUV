@@ -33,7 +33,10 @@ Other specs (Platform dependent):
    mv <path_to_your_engine_file> ~/ros2_ws/src/auv_nano/weights/
    ```
 5. Set the `engine_filename` in `detector.py`. The default is `mobilenet.engine`.
-6. Connect the two cameras to USB ports of your Jetson device. Check their port number using `lsusb` command.
+6. Connect the two cameras to USB ports of your Jetson device. Check their port number using:
+    ```sh
+    v4l2-ctl --list-devices
+    ```
 7. Update the port numbers: `FRONT_CAMERA_INDEX` and `DOWN_CAMERA_INDEX` in `config/config.yaml`.  
 
 8. Build the ROS package.
