@@ -46,6 +46,8 @@ class Detector(Node):
         self.qr_pub = self.create_publisher(Int32, '/qr_info', 10)
         self.map_pub = self.create_publisher(Image, '/map', 10)
         self.lines_pub = self.create_publisher(Float32MultiArray, '/detected_lines', 10)
+        self.front_raw_pub = self.create_publisher(Image, '/front_camera_raw', 10)
+        self.down_raw_pub = self.create_publisher(Image, '/down_camera_raw', 10)
 
         # CVBridge for converting OpenCV images to ROS Image messages
         self.bridge = CvBridge()
@@ -54,9 +56,9 @@ class Detector(Node):
         # Directories for saving frames (relative to the current working directory)
         run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
         save_dir = os.path.join("data", f"session_{run_id}")
-        self.FRONT_CAM_DIR = os.path.join(save_dir, "front_cam_frames_auv")
-        self.PROCESSED_FRAMES_DIR = os.path.join(save_dir, "down_processed_frames_auv")
-        self.RAW_FRAMES_DIR = os.path.join(save_dir, "down_raw_frames_auv")
+        self.FRONT_CAM_DIR = os.path.join(save_dir, "front_cam_frames")
+        self.PROCESSED_FRAMES_DIR = os.path.join(save_dir, "down_processed_frames")
+        self.RAW_FRAMES_DIR = os.path.join(save_dir, "down_raw_frames")
         os.makedirs(self.FRONT_CAM_DIR, exist_ok=True)
         os.makedirs(self.PROCESSED_FRAMES_DIR, exist_ok=True)
         os.makedirs(self.RAW_FRAMES_DIR, exist_ok=True)
@@ -126,8 +128,12 @@ class Detector(Node):
                     self.get_logger().error("Front camera lost connection; reinitializing...")
                     self.front_camera = reinitialize_camera(self.FRONT_CAMERA_INDEX, "front_camera")
 
-            # Save the front camera frame (for debugging/recording)
-            cv2.imwrite(f"{self.FRONT_CAM_DIR}/frame_{time.time():.6f}.jpg", frame_front)
+                # Publish raw front camera frame
+                front_raw_msg = self.bridge.cv2_to_imgmsg(frame_front, encoding='bgr8')
+                self.front_raw_pub.publish(front_raw_msg)
+
+                # Save the front camera frame (for debugging/recording)
+                cv2.imwrite(f"{self.FRONT_CAM_DIR}/frame_{time.time():.6f}.jpg", frame_front)
 
             # Publish the QR code info
             qr_msg = Int32()
@@ -166,12 +172,16 @@ class Detector(Node):
                 map_msg = self.bridge.cv2_to_imgmsg(line_overlayed_map, encoding='bgr8')
                 self.map_pub.publish(map_msg)
 
-                # Publish detected line coordinates
-                flat_lines = [float(coord) for line in lines for coord in line]  # flatten the list of lines
-                lines_msg = Float32MultiArray()
-                lines_msg.data = flat_lines
-                self.lines_pub.publish(lines_msg)             
+                if lines is not None:
+                    # Publish detected line coordinates
+                    flat_lines = [float(coord) for line in lines for coord in line]  # flatten the list of lines
+                    lines_msg = Float32MultiArray()
+                    lines_msg.data = flat_lines
+                    self.lines_pub.publish(lines_msg)             
                 
+                down_raw_msg = self.bridge.cv2_to_imgmsg(frame_down, encoding='bgr8')
+                self.down_raw_pub.publish(down_raw_msg)
+
                 # Save processed and raw downward camera frames
                 cv2.imwrite(f"{self.PROCESSED_FRAMES_DIR}/frame_{time.time():.6f}.jpg", line_overlayed_map)
                 cv2.imwrite(f"{self.RAW_FRAMES_DIR}/frame_{time.time():.6f}.jpg", frame_down)

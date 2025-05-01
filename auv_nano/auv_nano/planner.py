@@ -128,7 +128,7 @@ class Planner(Node):
             next_heading_deg = 0.0
             detected_caveline = False
 
-            if lines:
+            if lines is not None:
                 countours = len(lines)
                 self.get_logger().info("{} lines detected".format(countours))
 

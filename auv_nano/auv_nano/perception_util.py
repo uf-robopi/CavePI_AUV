@@ -12,6 +12,7 @@ import time
 import numpy as np
 import tensorrt as trt
 import pycuda.driver as cuda
+import pycuda.autoinit  # This automatically initializes CUDA driver
 
 # Initialize CUDA variables
 EXPLICIT_BATCH = 1 << (int)(trt.NetworkDefinitionCreationFlag.EXPLICIT_BATCH)
