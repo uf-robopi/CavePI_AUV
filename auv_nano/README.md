@@ -55,3 +55,23 @@ If a caveline is detected, the `/processed_image` topic should look like the exa
   <img src="../assets/detection_tank.gif" alt="Detection Tank" width="50%">
 </p>
 
+## Troubleshoot
+Q: How to install pycuda on Jetson devices?
+
+`pip install pycuda`
+
+`fatal error: cuda.h: No such file or directory`
+
+The following commands do the trick in Orin nano:
+
+```sh
+export PATH=/usr/local/cuda/bin:$PATH
+sudo apt-get install python3-dev
+pip install numpy
+export CUDA_ROOT=/usr/local/cuda
+pip install pycuda
+```
+
+Also see similar solutions reported across the community:
+* https://forums.developer.nvidia.com/t/modulenotfounderror-no-module-named-pycuda-driver/204031
+* https://stackoverflow.com/questions/52195608/src-cpp-cuda-hpp1410-fatal-error-cuda-h-no-such-file-or-directory/52604456
