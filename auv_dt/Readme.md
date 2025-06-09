@@ -11,6 +11,11 @@ The packages are tested on ROS Noetic with Gazebo Classic.
    sudo apt install ros-noetic-teleop-twist-keyboard
    ```
    In case if you are using any other version of ROS than Noetic, please replace `noetic` with the correct version of ROS.
+2. Install the `scipy` package with version >= 1.6.
+   ```sh
+   sudo apt install python3-pip
+   pip3 install --user --upgrade scipy
+   ```
    
 ## Usage
 
